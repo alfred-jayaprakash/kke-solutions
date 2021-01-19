@@ -1,14 +1,14 @@
-class tomcat_installer {
-    package {'tomcat':
+class nginx_installer {
+    package {'nginx':
         ensure => installed
     }
 
-    service {'tomcat':
+    service {'nginx':
         ensure    => running,
         enable    => true,
     }
 }
 
-node 'stapp01', 'stapp02', 'stapp03' {
-  include tomcat_installer
+node 'stapp01.stratos.xfusioncorp.com', 'stapp02.stratos.xfusioncorp.com', 'stapp03.stratos.xfusioncorp.com' {
+  include nginx_installer
 }
