@@ -1,0 +1,6 @@
+- name: Ansible copy
+  hosts: appservers
+  become: yes
+  tasks:
+    - name: copy index.html to security folder
+      copy: src=/usr/src/security/index.html dest=/opt/security

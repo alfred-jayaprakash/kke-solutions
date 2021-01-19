@@ -1,0 +1,182 @@
+#
+# Service Account definition
+#
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: haproxy-service-account-xfusion
+  namespace: haproxy-controller-xfusion
+---
+#
+# ClusterRole definition
+#
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: haproxy-cluster-role-xfusion
+rules:
+  - apiGroups: [""]
+    resources:
+      [
+        "configmaps",
+        "endpoints",
+        "nodes",
+        "pods",
+        "services",
+        "namespaces",
+        "events",
+        "serviceaccounts",
+      ]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["extensions"]
+    resources: ["ingresses", "ingresses/status"]
+    verbs: ["get", "list", "watch", "update"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "watch", "create", "patch", "update"]
+---
+#
+# ClusterRoleBinding definition
+#
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: haproxy-cluster-role-binding-xfusion
+  namespace: haproxy-controller-xfusion
+roleRef:
+  kind: ClusterRole
+  name: haproxy-cluster-role-xfusion
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: haproxy-service-account-xfusion
+    namespace: haproxy-controller-xfusion
+---
+#
+# Backend Service definition
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-backend-xfusion
+  namespace: haproxy-controller-xfusion
+  labels:
+    run: ingress-default-backend
+spec:
+  selector:
+    run: ingress-default-backend
+  ports:
+    - name: port-backend
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+#
+# Frontend Service definition
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-service-xfusion
+  namespace: haproxy-controller-xfusion
+  labels:
+    run: haproxy-ingress
+spec:
+  type: NodePort
+  selector:
+    run: haproxy-ingress
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+      nodePort: 32456
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+      nodePort: 32567
+    - name: stat
+      port: 1024
+      protocol: TCP
+      targetPort: 1024
+      nodePort: 32678
+---
+#
+# Backend Deployment definition
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment-xfusion
+  namespace: haproxy-controller-xfusion
+  labels:
+    run: ingress-default-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: ingress-default-backend
+  template:
+    metadata:
+      labels:
+        run: ingress-default-backend
+    spec:
+      containers:
+        - name: backend-container-xfusion
+          image: gcr.io/google_containers/defaultbackend:1.0
+          ports:
+            - containerPort: 8080
+---
+#
+# Frontend Deployment definition
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haproxy-ingress-xfusion
+  namespace: haproxy-controller-xfusion
+  labels:
+    run: ingress-default-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: haproxy-ingress
+  template:
+    metadata:
+      labels:
+        run: haproxy-ingress
+    spec:
+      serviceAccountName: haproxy-service-account-xfusion
+      containers:
+        - name: ingress-container-xfusion
+          image: haproxytech/kubernetes-ingress
+          args:
+            - "--default-backend-service=haproxy-controller-xfusion/service-backend-xfusion"
+          ports:
+            - name: http
+              containerPort: 80
+            - name: https
+              containerPort: 443
+            - name: stat
+              containerPort: 1024
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 1024
+          env:
+            - name: TZ
+              value: Etc/UTC
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace

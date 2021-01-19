@@ -1,0 +1,29 @@
+#
+# kubectl label nodes node01 color=pink
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pink
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-pod
+  template:
+    metadata:
+      labels:
+        app: nginx-pod
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: color
+                    operator: In
+                    values:
+                      - pink
+      containers:
+        - name: nginx-container
+          image: nginx:latest
