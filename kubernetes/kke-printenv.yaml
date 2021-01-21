@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: print-envars-greeting
+  labels:
+    name: print-envars-greeting
+spec:
+  containers:
+    - name: print-env-container
+      image: bash
+      env:
+        - name: GREETING
+          value: "Welcome to"
+        - name: COMPANY
+          value: "xFusionCorp"
+        - name: GROUP
+          value: "Industries"
+      command: ["echo"]
+      args: ["$(GREETING) $(COMPANY) $(GROUP)"]
