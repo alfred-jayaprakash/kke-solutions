@@ -1,5 +1,6 @@
 #
-# kubectl label nodes node01 color=pink
+# Step 1: kubectl label nodes node01 color=pink
+# Step 2: kubectl create -f <This file>
 #
 apiVersion: apps/v1
 kind: Deployment

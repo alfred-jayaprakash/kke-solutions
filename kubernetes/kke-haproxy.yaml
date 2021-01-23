@@ -1,4 +1,8 @@
 #
+# Step 1: kubectl create namespace haproxy-controller-xfusion
+# Step 2: kubectl create -f <this file>
+#
+#
 # Service Account definition
 #
 apiVersion: v1

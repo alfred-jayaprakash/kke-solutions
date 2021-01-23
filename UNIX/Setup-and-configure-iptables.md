@@ -1,4 +1,4 @@
-# Solution
+# Setup and configure Iptables
 ## Introduction
 * `iptables -nvL` is your friend to finish this task. 
 * Note that there's one DROP ALL rule at position 5. Hence, any rules you insert should be before position 5. So use the option `-I <position>` to insert rule before Position 5. 

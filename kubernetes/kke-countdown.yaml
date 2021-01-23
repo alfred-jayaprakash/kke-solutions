@@ -1,3 +1,6 @@
+#
+# Step 1: kubectl create -f <this file>
+#
 apiVersion: batch/v1
 kind: Job
 metadata:

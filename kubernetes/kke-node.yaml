@@ -1,3 +1,7 @@
+#
+# Step 1: kubectl create namespace node-namespace-datacenter
+# Step 2: kubectl create -f <this file>
+#
 apiVersion: v1
 kind: Service
 metadata:
