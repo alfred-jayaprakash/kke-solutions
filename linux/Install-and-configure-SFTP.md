@@ -1,13 +1,14 @@
 
 ## Install and configure SFTP
 ## Solution
-* SSH to the required host and add the user e.g. `useradd javed -s /sbin/nologin` 
-* Create the landing directory and make the new user the owner:
+* SSH to the required host and add the user e.g. `sudo useradd javed -s /sbin/nologin` 
+* Set the password to the user as given in the questino e.g. `sudo passwd javed`
+* Create the landing directory (chroot directory in the question) and make the new user the owner:
 ```
-mkdir -p /var/www/webdata
-chown javed:javed /var/www/webdata 
+sudo mkdir -p /var/www/webdata
+sudo chown javed:javed /var/www/webdata 
 ```
-* Modify permissions for root
+* Modify permissions to the parent folder i.e. /var/www to grant access and ownership to root user
 ```
 sudo chown root:root /var/www/
 sudo chmod 755 /var/www
