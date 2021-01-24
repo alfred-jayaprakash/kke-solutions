@@ -1,0 +1,36 @@
+#
+# Step 1: kubectl create namesapce devops
+# Step 2: kubectl create -f <this file>
+# (Wait for pod to start)
+# Step 3: kubectl exec time-check --namespace=devops -- cat /opt/devops/time/time-check.log
+#
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: time-config
+  namespace: devops
+data:
+  TIME_FREQ: "2"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: time-check
+  namespace: devops
+  labels:
+    app: time-check
+spec:
+  volumes:
+    - name: log-volume
+      emptyDir: {}
+  containers:
+    - name: time-check
+      image: busybox:latest
+      volumeMounts:
+        - mountPath: /opt/devops/time
+          name: log-volume
+      envFrom:
+        - configMapRef:
+            name: time-config
+      command: ["/bin/sh", "-c"]
+      args: ["while true; do date; sleep $TIME_FREQ;done > /opt/devops/time/time-check.log"]
