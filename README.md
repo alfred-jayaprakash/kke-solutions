@@ -18,7 +18,7 @@ This GIT project contains my own solutions to the tasks in Kodekloud Engineer. A
             * `ansible stapp01 -a "ls -ltr /var/www/html" -i inventory`
             * `ansible all -a "cat /opt/data/blog.txt" -i inventory` ('all' is a special keyword - Runs the specified command in all managed hosts)
       * **For Puppet tasks**
-        * Validate the syntax by running `puppet parser validate <filename>` e.g. `puppet parser validate demo.pp`
+        * Validate the syntax by running `puppet parser validate <filename>` on the same directory e.g. `puppet parser validate demo.pp`
         * Login to target hosts and dry-run the code by running `sudo puppet agent -tv --noop`. Notice that the output will state if there are some changes to be made in the system
         * Finally, execute the task by e.g. Appservers and run `sudo puppet agent -tv` 
       * **For Docker and Kubernetes tasks**
