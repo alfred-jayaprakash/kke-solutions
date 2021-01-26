@@ -9,7 +9,7 @@
 ## Common mistakes
   * Not specifying which nodes to run by specifying a node definition
   ```ruby
-  node 'stapp01.stratos.xfusioncorp.com', 'stapp02.stratos.xfusioncorp.com', 'stapp03.stratos.   xfusioncorp.com' {
+  node 'stapp01.stratos.xfusioncorp.com', 'stapp02.stratos.xfusioncorp.com', 'stapp03.stratos.xfusioncorp.com' {
     include nginx_installer
   }
   ```
