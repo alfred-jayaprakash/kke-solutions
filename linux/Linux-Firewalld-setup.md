@@ -1,7 +1,7 @@
-# Setup and configure Iptables
+# Linux Firewalld Setup
 ## Introduction
-* Note that there's one DROP ALL rule at position 5. Hence, any rules you insert should be before position 5. So use the option `-I <position>` to insert rule before Position 5. 
-* Need to do the task on all 3 appservers. 
+* For this task, after installing Firewalld, you are required to add 2 rules: a normal rule and a rich rule
+* Most people fail this task because they miss reloading the firewall-cmd, after adding the rules, by running `firewall-cmd --reload`
 
 ## Solution
 * SSH to one of the appservers and note down the Apache port and Nginx ports respectively
