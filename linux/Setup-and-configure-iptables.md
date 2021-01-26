@@ -4,8 +4,8 @@
 * Note that there's one DROP ALL rule at position 5. Hence, any rules you insert should be before position 5. So use the option `-I <position>` to insert rule before Position 5. 
 * Need to do the task on all 3 appservers. 
 
-## Solution 1
-* Create a bash script in all the appserver hosts with the below content. 
+## Solution
+* Create a bash script in all the appserver hosts with the below content (Replace the port 5000 with the port as per the question)
 * The solution basically inserts 2 rules: 1 ACCEPT Rule and 1 DROP rule at Position 5 an 6 to accept connection from STLB01 only and drop all other connections respectively
 ```UNIX
 #!/bin/bash
@@ -35,7 +35,5 @@ iptables -nvL
  ``` 
 
 ## Verification
-* Execute curl command from Jump Host to the given ports on all hosts. You should get a connection failure.
-For example
-`curl http://stapp01:8080/`
-* Execute the same curl command from Loadbalancer Host (stlb01) to the given ports on all hosts (You should SSH to stlb01 first). You should get the default index page served.
+* Execute curl command from Jump Host to the given ports on all hosts. You should get a connection timed out. For example - `curl -I http://stapp01:5000/`
+* Execute the same curl command from Loadbalancer Host (stlb01) to the given ports on all hosts (You should SSH to stlb01 first). You should see a valid response returned from the servers.
