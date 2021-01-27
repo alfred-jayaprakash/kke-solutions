@@ -1,0 +1,15 @@
+#
+# Step 1: Simply save this file as playbook.yml
+# Step 2: ansible-playbook -i inventory playbook.yml
+#
+- name: Create archive and copy
+  hosts: stapp01, stapp02, stapp03
+  become: yes
+  tasks:
+    - name: Create the archive and set the owner
+      archive:
+        path: /usr/src/finance
+        dest: /opt/finance/apps.tar.gz
+        format: gz
+        force_archive: true
+        owner: "{{ ansible_user_id }}"
