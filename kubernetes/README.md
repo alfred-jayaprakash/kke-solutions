@@ -14,8 +14,7 @@
       * `kubectl exec --stdin --tty nginx-nautilus -- /bin/bash`
     * Logs - Useful for tasks that require you to print an output e.g. echo:
       * `kubectl logs <podname>`. For example, `kubectl logs my-pod` 
-      * `docker logs -f <container_id_or_name>`. For example, `docker logs -f nginx_ubuntu`
-
+      
 ## Common mistakes
 * Not waiting until the Pods are in `Running` state. Check the pods are in `Running` before you press that `Finish` button.
 * Not paying attention to namespaces. Make sure all the required resources are in the correct namespace.

@@ -35,7 +35,8 @@ This GIT project contains my own solutions to the tasks in Kodekloud Engineer. A
           * `kubectl exec --stdin --tty nginx-nautilus -- /bin/bash`
           * `docker exec -it nginx_ubuntu /bin/bash` 
         * Logs - Useful for tasks that require you to print an output e.g. echo:
-          * `kubectl logs <podname>`. For example, `kubectl logs my-pod`       
+          * `kubectl logs <podname>`. For example, `kubectl logs my-pod` 
+          * `docker logs -f <container_id_or_name>`. For example, `docker logs -f nginx_ubuntu`
 * **It's okay to "Try Later"**
   * If you think you took too much time or screwed up the environment, click `Try Later` and come back to the task again. Most importantly, read through the question again as the question values will change with each reload of the question.
 * **Go for Bonus points**
