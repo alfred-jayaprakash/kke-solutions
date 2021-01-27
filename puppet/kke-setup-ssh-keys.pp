@@ -1,3 +1,9 @@
+#
+# Step 1: Save this file under /etc/puppetlabs/code/environments/production/manifests as a file
+# with the name specified in the question e.g. news.pp
+# Step 2: Copy the public key value from the public key location specified in the question and paste
+# in the below variable
+#
 $public_key =  'AAAAB3NzaC1yc2EAAAADAQABAAABAQCjzucWviIHiT0R1YP3cYmkWcNfv53svphAIW4RpnDiSdoTvooeah3Akh/VagwCJsClpdwuM3xdAvEWyHFkI6zdItrdjqM8fJ6Y8HYXF8Ros979TVYcktI8Ird+92CFqsAVRqGTyJNx++68N7JA78dWf+SEsGaDSkEjGkjfIJgOlZ1OmJJB/pszUOjeiFvEJbkc+TA0fH6htGg/QCotC1tAUnIszf664QENjNiqIfruM/CwojExmos8RKKO1GYgjBFzB9eofk7zsjn1zk9NJ7LGqvZ6/EirTf2dCOH5RMYbjccGZI/AQTXQ15kUYUHCtpUQFrQ88T0W93D9bbiXHdFn'
 
 class ssh_node1 {
