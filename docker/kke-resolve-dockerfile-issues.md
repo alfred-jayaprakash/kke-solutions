@@ -34,6 +34,7 @@ COPY html/index.html /usr/local/apache2/htdocs/
 ```
 
 ## Verification
-* First try to build an image using this Dockerfile using `sudo docker build -t my_image .`. You should see that the image gets built successfully
-* Next is try to run the image as `sudo docker run --name my_httpd -p 8080:8080 -d my_image`. It should run without tests
+* First try to build an image using this Dockerfile using `sudo docker build -t my_image .`
+* You should see that the image gets built successfully with any errors
+* Next is try to run the image as `sudo docker run --name my_httpd -p 8080:8080 -d my_image`. It should run without any errors.
 * Lastly test using curl as `curl http://localhost:8080`. You should a HTML content returned from the container.
