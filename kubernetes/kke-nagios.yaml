@@ -6,6 +6,10 @@
 #         question
 #         e.g. htpasswd -c /usr/local/nagios/etc/htpasswd.users xFusionCorp
 #
+# Verify successful completion by opening Nagios Core Web Interface on browser
+# (Open Port on Host 1). You should be able to login using the newly created ID and
+# password
+#
 apiVersion: v1
 kind: Service
 metadata:
