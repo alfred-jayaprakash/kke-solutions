@@ -1,0 +1,14 @@
+#
+# Step 1: Simply save this file as playbook.yml
+# Step 2: ansible-playbook -i inventory playbook.yml
+#
+- name: Create file in appservers
+  hosts: stapp01, stapp02, stapp03
+  tasks:
+    - name: Create the file and set properties
+      file:
+        path: /tmp/app.txt
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+        mode: "0655"
+        state: touch
