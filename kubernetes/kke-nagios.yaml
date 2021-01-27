@@ -1,5 +1,10 @@
 #
 # Step 1: kubectl create -f <this file>
+# Step 2: Wait for the pods to be in 'Running' state. Note down pod name.
+# Step 3: Open shell to pod: kubectl exec --stdin --tty <pod name> -- /bin/bash
+# Step 4: Create the user that question asks for and when prompted copy-paste password from
+#         question
+#         e.g. htpasswd -c /usr/local/nagios/etc/htpasswd.users xFusionCorp
 #
 apiVersion: v1
 kind: Service
