@@ -12,4 +12,4 @@
         dest: /opt/finance/apps.tar.gz
         format: gz
         force_archive: true
-        owner: "{{ ansible_user_id }}"
+        owner: "{{ ansible_user }}"
