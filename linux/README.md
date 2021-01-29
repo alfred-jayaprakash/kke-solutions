@@ -1,5 +1,5 @@
 # System Administration Tasks
-### General Tips
+## General Tips
 * Always verify your task using one or more of the approaches below:
   * Use Curl command to the test the task. This is particular useful for verifying tasks that involve HTTP/S servers e.g. Apache, Nginx, Firewalld, Iptables. Usage is: `curl <HTTP URL>`. Examples:
     * Simple URL fetch: `curl http://stapp01:8080/`. You should get a valid HTML content returned back.
