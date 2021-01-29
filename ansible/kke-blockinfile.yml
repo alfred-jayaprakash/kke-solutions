@@ -1,0 +1,27 @@
+#
+# Step 1: Simply save this file as playbook.yml
+# Step 2: ansible-playbook -i inventory playbook.yml
+#
+- name: Install httpd and setup index.html
+  hosts: stapp01, stapp02, stapp03
+  become: yes
+  tasks:
+    - name: Install httpd
+      package:
+        name: httpd
+        state: present
+    - name: Add content in index.html
+      blockinfile:
+        path: /var/www/html/index.html
+        block: |
+          Welcome to XfusionCorp!
+
+          This is Nautilus sample file, created using Ansible!
+
+          Please do not modify this file manually!
+    - name: Ensure owner and permissions for index.html
+      file:
+        path: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: "0644"
