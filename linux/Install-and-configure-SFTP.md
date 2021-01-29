@@ -7,6 +7,7 @@
 ```
 sudo mkdir -p /var/www/webdata
 sudo chown javed:javed /var/www/webdata 
+sudo chmod 755 /var/www/webdata
 ```
 * Modify permissions to the parent folder i.e. /var/www to grant access and ownership to root user
 ```

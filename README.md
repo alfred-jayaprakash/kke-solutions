@@ -43,7 +43,7 @@ This GIT project contains my own solutions to the tasks in Kodekloud Engineer. A
   * If you complete the task within 15 minutes, you get half of the task points as bonus points. For example, if the task is 500 points worth, if you complete the task by 15 minutes, you will get 500 + 250 points. One tip is to take time to get the question right and save the answer in a Text Editor on your computer, click `Try Later` and redo the task again, but this time quicker to earn bonus points.
 * **Make it easy for the Reviewers** 
   * If you are copy-pasting code in to vi editor, pause for 5-10 secs so that reviewers would be able to take one good look at the code during reviews
-  * Use `more` command for files, so that reviwers can clearly see the content
+  * Use `more` command for files, so that reviewers can clearly see the content
   * Perform steps in the same tab, if possible, as only the main tab is recorded
   * Run verify steps e.g. `curl` and state output steps e.g. `kubectl get pods`/`systemctl status` so that reviewers can cross-check the outcome
 
