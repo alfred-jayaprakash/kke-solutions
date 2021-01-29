@@ -7,10 +7,10 @@ This GIT project contains my own solutions to the tasks in Kodekloud Engineer. A
 * **Begin with the end in mind**
     * Always begin the task with an idea on how to verify the successful completion of the task. For verification guidance on individual topics, follow the links below:
       * [Linux System Administration tasks](./linux)
-      * [Kubernetes](./kubernetes)
-      * [Docker](./docker)
-      * [Ansible](./ansible)
-      * [Puppet](./puppet)
+      * [Kubernetes tasks](./kubernetes/README.md)
+      * [Docker tasks](./docker/README.md)
+      * [Ansible tasks](./ansible/README.md)
+      * [Puppet tasks](./puppet/README.md)
 * **It's okay to "Try Later"**
   * If you think you took too much time to perform the task or you screwed up the environment, click `Try Later` and come back to the task again. Most importantly, read through the question again as the question values will change with each reload of the question.
 * **Go for Bonus points**
