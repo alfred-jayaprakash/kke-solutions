@@ -1,6 +1,6 @@
 #
 # Step 1: Install puppet-yum package as 'puppet module install puppet-yum'
-# Step 1: Save this file under /etc/puppetlabs/code/environments/production/manifests 
+# Step 2: Save this file under /etc/puppetlabs/code/environments/production/manifests 
 # as a file with the name specified in the question e.g. cluster.pp
 # Step 3: Replace class name,group package values in this as per question
 # Step 4: After performing puppet code validation steps as specified in my guide run
