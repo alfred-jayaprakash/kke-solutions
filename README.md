@@ -6,7 +6,7 @@ This GIT project contains my own solutions to the tasks in Kodekloud Engineer. A
 ### General Tips
 * **Begin with the end in mind**
     * Always begin the task with an idea on how to verify the successful completion of the task. For verification guidance on individual topics, follow the links below:
-      * [Linux System Administration tasks](./linux)
+      * [Linux System Administration tasks](./linux/README.md)
       * [Kubernetes tasks](./kubernetes/README.md)
       * [Docker tasks](./docker/README.md)
       * [Ansible tasks](./ansible/README.md)
