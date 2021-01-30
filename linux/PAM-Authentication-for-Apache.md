@@ -1,7 +1,7 @@
 # PAM Authentication for Apache
 ## Solution
 * Install pwauth in all the appserver hosts `sudo yum --enablerepo=epel -y install mod_authnz_external pwauth`
-* Edit the file `/etc/httpd/conf/httpd.conf` and add the following immediately below the existing Directory entries
+* Edit the file `/etc/httpd/conf.d/authnz_external.conf` and add the following at the end of the file. Make sure not to duplicate or overlap with existing entries in this file
 ```
 <Directory /var/www/html/protected>
   AuthType Basic
