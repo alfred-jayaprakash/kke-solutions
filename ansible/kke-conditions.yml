@@ -1,0 +1,34 @@
+#
+# Step 1: Simply save this file as playbook.yml
+# Step 2: ansible-playbook -i inventory playbook.yml
+# Step 3: Verify that the files have been copied correctly by running
+#         ansible all -a "ls -ltr /usr/src/data/" -i inventory
+#
+- name: Copy text files to Appservers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy blog.txt to stapp01
+      ansible.builtin.copy:
+        src: /usr/src/data/blog.txt
+        dest: /opt/data/
+        owner: tony
+        group: tony
+        mode: "0755"
+      when: inventory_hostname == "stapp01"
+    - name: Copy story.txt to stapp02
+      ansible.builtin.copy:
+        src: /usr/src/data/story.txt
+        dest: /opt/data/
+        owner: steve
+        group: steve
+        mode: "0755"
+      when: inventory_hostname == "stapp02"
+    - name: Copy media.txt to stapp03
+      ansible.builtin.copy:
+        src: /usr/src/data/media.txt
+        dest: /opt/data/
+        owner: banner
+        group: banner
+        mode: "0755"
+      when: inventory_hostname == "stapp03"
