@@ -20,6 +20,6 @@ This GIT project contains my own solutions to the tasks in Kodekloud Engineer. A
   * If you are copy-pasting code in to vi editor, pause for 5-10 secs so that reviewers would be able to take one good look at the code during reviews
   * Use `more` command for files, so that reviewers can clearly see the content
   * Perform steps in the same tab, if possible, as only the main tab is recorded
-  * Run verify steps e.g. `curl` and state output steps e.g. `kubectl get pods`/`systemctl status` so that reviewers can cross-check the outcome
+  * Run state verification steps so that reviewers can cross-check the outcome of tasks e.g. `curl`, state output steps e.g. `kubectl get pods` / `systemctl status`
 
 
