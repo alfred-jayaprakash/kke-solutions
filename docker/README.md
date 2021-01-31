@@ -9,7 +9,7 @@
   * Exec command - Especially useful to verify tasks that involve running a server listening to a port e.g. Nginx, HTTPD (or) Verify volume mounts
     * `docker exec -it <container_id_or_name> <command>`
     * Examples:
-      * `docker exec -d nginx_ubuntu ls /tmp/execWorks`
+      * `docker exec -it nginx_ubuntu ls /tmp/execWorks`
   * Shell - You can also get a shell to a Docker Container like this. This is useful when you need to run multiple verification commands:
     * `docker exec -it nginx_ubuntu /bin/bash` 
   * Logs - Useful for tasks that require you to print an output e.g. echo:
