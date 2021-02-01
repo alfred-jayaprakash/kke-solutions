@@ -1,0 +1,50 @@
+#
+# Step 1: kubectl create namespace fieldref-namespace
+# Step 2: kubectl create -f <this file>
+# Step 3: Make sure the pod is in Running state
+# Step 4: Verify: `kubectl logs envars-fieldref --namespace fieldref-namespace`
+#     You should see the values of environment variables printed by the Pod
+# Step 5: Verify: Get shell to the Pod
+#    `kubectl exec -it envars-fieldref --namespace fieldref-namespace -- /bin/bash`
+#     in the following prompt run: `printenv`
+#     You should see all the environment variables printed
+#
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envars-fieldref
+  namespace: fieldref-namespace
+spec:
+  restartPolicy: Never
+  containers:
+    - name: fieldref-container
+      image: httpd:latest
+      command: ["sh", "-c"]
+      args:
+        - while true; do
+          echo -en '\n';
+          printenv NODE_NAME POD_NAME POD_NAMESPACE;
+          printenv POD_IP POD_SERVICE_ACCOUNT;
+          sleep 10;
+          done;
+      env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: POD_SERVICE_ACCOUNT
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
