@@ -8,4 +8,4 @@
 `ssh tony@stapp01` (No password prompt is seen)
 * Finally, change to the `/home/thor/ansible` directory and test using Ansible adhoc ping command as:
 `ansible stapp01 -m ping -i inventory -v`
-You should not see the message 'SUCCESS' in the output
+You should see the message 'SUCCESS' in the output
