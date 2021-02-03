@@ -1,0 +1,55 @@
+#
+# Step 1: kubectl create -f <this file>
+# Step 2: Wait for the pod to be in 'Running' state. Note down the pod name
+#         which will be in the format ic-deploy-xfusion-xxxxx
+# Step 3: Verify: kubectl exec -it ic-deploy-xfusion-xxxxx -- /bin/bash
+#         In the resulting prompt, type 'cat /ic/official' and you should
+#         see "Init Done - Welcome to xFusionCorp Industries"
+# Step 4: Verify: kubectl logs -f ic-deploy-xfusion-xxxxx
+#         You should see the message "Init Done - Welcome to xFusionCorp Industries"
+#         printed every 5 secs
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ic-deploy-xfusion
+  labels:
+    app: ic-xfusion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ic-xfusion
+  template:
+    metadata:
+      labels:
+        app: ic-xfusion
+    spec:
+      volumes:
+        - name: ic-volume-xfusion
+          emptyDir: {}
+      initContainers:
+        - name: ic-msg-xfusion
+          image: centos:latest
+          command:
+            [
+              "/bin/bash",
+              "-c",
+              "echo Init Done - Welcome to xFusionCorp Industries > /ic/official",
+            ]
+          volumeMounts:
+            - name: ic-volume-xfusion
+              mountPath: /ic
+
+      containers:
+        - name: ic-main-xfusion
+          image: centos:latest
+          command:
+            [
+              "/bin/bash",
+              "-c",
+              "while true; do cat /ic/official; sleep 5; done",
+            ]
+          volumeMounts:
+            - name: ic-volume-xfusion
+              mountPath: /ic
