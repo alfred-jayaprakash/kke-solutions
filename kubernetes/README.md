@@ -2,7 +2,7 @@
 ## General Kubernetes Tips
 * Navigate to `/tmp` directory and create your Kubernetes configuration file. Then you can simply run `kubectl create -f yourfile.yaml`
 * Verify the successful completion of the tasks using one of the following steps:
-    * Use browser by clicking `Open Port on Host 1` tab especially for tasks that ask you to configure a NodePort. 
+    * Use browser by clicking `Select port to view on Host 1` tab especially for tasks that ask you to configure a NodePort. 
       * Click `Open Port on Host 1` tab and specify the NodePort and click `Connect`
       * Check that the URL loads.
     * Exec command - Especially useful to verify tasks that involve running a server listening to a port e.g. Nginx, Wordpress, Nagios (or) Verify volume mounts
