@@ -20,9 +20,9 @@ sudo chkconfig rpcbind on
 * Create the directory that needs to be exported as per the question: `mkdir /webdata`
 * Now edit `/etc/exports` and add the following export entries to export this directory to all 3 appserver hosts
 ```
-/webdata  stapp01(rw,sync,no_subtree_check,no_root_squash,fsid=0)
-/webdata  stapp02(rw,sync,no_subtree_check,no_root_squash,fsid=0)
-/webdata  stapp03(rw,sync,no_subtree_check,no_root_squash,fsid=0)
+/webdata  stapp01(rw,sync,no_root_squash)
+/webdata  stapp02(rw,sync,no_root_squash)
+/webdata  stapp03(rw,sync,no_root_squash)
 ```
 * Export the configuration: `sudo exportfs -a`
 
