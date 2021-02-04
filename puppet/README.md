@@ -14,3 +14,6 @@
   }
   ```
   * Not running `sudo puppet agent -tv` in the agent hosts when the task requires you to do so. Some of the tasks require you to not just create the puppet programming file, but also run the configurations in all the host. Pay attention to that.
+
+---
+For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)

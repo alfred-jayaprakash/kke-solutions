@@ -5,7 +5,8 @@
 # kubectl exec -it redis-cluster-0 -- redis-cli --cluster create
 # --cluster-replicas 1 $(kubectl get pods -l app=redis-cluster
 # -o jsonpath='{range.items[*]}{.status.podIP}:6379 {end}')
-# Step 4: Complete the task if there are no errors
+# Step 4: Verify: Open app on browser by clicking 'Open Port on Host 1'
+#         and port as NodePorts below. You should see the page without any errors
 #
 ---
 apiVersion: v1

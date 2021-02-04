@@ -14,3 +14,5 @@
   * For tasks that involve iptables, use `iptables -nvL` to list all the rules in a simple-to-understand format
   * For some tasks, it may be time-saving and less error-prone if you rather create a shell script with all the required commands and execute them on all the required hosts. This will help you to easily go for bonus points. e.g. Tasks that require you to configure Iptables or Firewalld
 
+---
+For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)

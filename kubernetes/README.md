@@ -2,7 +2,7 @@
 ## General Kubernetes Tips
 * Always create your Kubernetes YAML configurations offline as you would do in real-life. I use 'Visual Studio Code' to create my YAML file as per the question and then apply it in the KKE environment.
 * Navigate to `/tmp` directory and create your Kubernetes configuration file. Then you can simply run `kubectl create -f yourfile.yaml`. You don't need to use sudo privileges.
-* Another important tip is to make use of Katakoda Kubernetes Playground to test your changes.
+* Another important tip is to make use of [Katakoda Kubernetes Playground](https://www.katacoda.com/courses/kubernetes/playground) to test your changes.
 As this is a Katakoda environment, it works in the same way as Kodekloud Engineer. Good thing is that
 there is no time limit. Also you can easily close browser and open another environment quickly. So, the
 advice here is to:
@@ -29,4 +29,7 @@ advice here is to:
 * Not waiting until the Pods are in `Running` state. Check the pods are in `Running` before you press that `Finish` button.
 * Not paying attention to namespaces. Make sure all the required resources are in the correct namespace.
 * Not reading the question properly. Especially, when you redo the same question, all the names and port values would've changed in the new question. So pay attention to that. 
+
+---
+For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)
 

@@ -1,6 +1,7 @@
 #
 # Step 1: kubectl label nodes node01 color=pink
 # Step 2: kubectl create -f <This file>
+# Step 3: Verify: Wait until the pod is in running state on node01
 #
 apiVersion: apps/v1
 kind: Deployment

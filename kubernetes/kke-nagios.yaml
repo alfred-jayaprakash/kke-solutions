@@ -5,8 +5,7 @@
 # Step 4: Create the user that question asks for and when prompted copy-paste password from
 #         question
 #         e.g. htpasswd -c /usr/local/nagios/etc/htpasswd.users xFusionCorp
-#
-# Verify successful completion by opening Nagios Core Web Interface on browser
+# Step 5: Verify: successful completion by opening Nagios Core Web Interface on browser
 # (Open Port on Host 1). You should be able to login using the newly created ID and
 # password
 #

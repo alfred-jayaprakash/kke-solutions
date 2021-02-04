@@ -1,7 +1,14 @@
 #
-# step 1: kubectl create namespace jenkins
-# step 2: kubectl create -f <this file>
-# step 3: kubectl exec <podname> --namespace jenkins -- cat /var/lib/jenkins/secrets/initialAdminPassword
+# Step 1: kubectl create namespace jenkins
+# Step 2: kubectl create -f <this file>
+# Step 3: Wait for the pods to be in running state. Note down the pod name.
+# Step 4: kubectl exec <podname> --namespace jenkins -- cat
+#         /var/lib/jenkins/secrets/initialAdminPassword
+# Step 5: Verify: kubectl exec <podname> --namespace jenkins
+#         -- curl http://localhost:8080/
+#         You should see a valid HTML content being returned
+# Step 6: Verify: Open Jenkins app on browser by clicking 'Open Port on Host 1'
+#         and port as NodePort below. You should see the page without any errors
 #
 apiVersion: v1
 kind: Service

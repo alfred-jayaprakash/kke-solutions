@@ -1,9 +1,12 @@
 #
 # Step 1: kubectl create namespace node-namespace-datacenter
 # Step 2: kubectl create -f <this file>
-# Step 3: Verify: Click 'Select port to view on Host 1' and provide the Node Port below.
-#         You should see the page. Also, use curl to verify as the guide under
-#         ../../kubernetes/README.md
+# Step 3: Wait for the pods to be in 'Running' state. Note down a pod name.
+# Step 4: Verify: kubectl exec <podname> --namespace node-namespace-datacenter
+#         -- curl http://localhost:8080/
+#         You should get back a valid HTML content
+# Step 5: Verify: Click 'Select port to view on Host 1' and provide the Node Port below.
+#         You should see the page.
 #
 apiVersion: v1
 kind: Service

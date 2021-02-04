@@ -1,5 +1,8 @@
 #
-# Step 1: Run kubectl create -f <This file>
+# Step 1: kubectl create -f <this file>
+# Step 2: Wait for the pods to be in running state. Note down a pod name.
+# Step 3: Verify: kubectl exec <podname> -- curl http://localhost:8080/
+#         You should see a valid HTML content being returned
 #
 apiVersion: apps/v1
 kind: ReplicaSet

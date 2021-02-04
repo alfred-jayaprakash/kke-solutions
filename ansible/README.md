@@ -9,3 +9,5 @@
         * `ansible stapp01 -a "ls -ltr /var/www/html" -i inventory`
         * `ansible all -a "cat /opt/data/blog.txt" -i inventory` ('all' is a special keyword - Runs the specified command in all managed hosts)
    
+---
+For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)

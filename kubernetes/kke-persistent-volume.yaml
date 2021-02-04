@@ -1,3 +1,9 @@
+#
+# Step 1: kubectl create -f <this file>
+# Step 2: Wait for the pod to be in 'Running' state
+# Step 3: Verify: kubectl exec pod-datacenter -- curl http://localhost/
+#         You should get back a valid HTML content
+#
 apiVersion: v1
 kind: PersistentVolume
 metadata:

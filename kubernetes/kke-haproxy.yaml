@@ -1,6 +1,10 @@
 #
-# Step 1: kubectl create namespace haproxy-controller-xfusion
+# Step 1: kubectl create haproxy-controller-xfusion
 # Step 2: kubectl create -f <this file>
+# Step 3: Make sure all the pods are in running state
+# Step 4: Verify: Open Haproxy app on browser by clicking 'Open Port on Host 1'
+#         and port as each of the NodePorts below (http, https and stat).
+#         You should see the page loaded successfully
 #
 #
 # Service Account definition

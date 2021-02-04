@@ -15,4 +15,6 @@
   * Logs - Useful for tasks that require you to print an output e.g. echo:
     * `docker logs -f <container_id_or_name>`. For example, `docker logs -f nginx_ubuntu`       
 
+---
+For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)
 
