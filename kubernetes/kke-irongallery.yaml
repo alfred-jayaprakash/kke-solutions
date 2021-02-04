@@ -1,6 +1,12 @@
 #
 # Step 1: kubectl create namespace iron-namespace-nautilus
 # Step 2: kubectl create -f <this file>
+# Step 3: Wait for the pods to be in 'Running' state. Note down any
+#         frontend pod's name i.e. iron-gallery-deployment-nautilus-xxxxx
+# Step 4: Verify: kubectl exec iron-gallery-deployment-nautilus-xxxxx -- curl http://localhost/
+#         You should see a valid HTML content being returned
+# Step 5: Verify: Open Irongallery app on browser by clicking 'Open Port on Host 1'
+#         and port as NodePort below. You should see Irongallery app without any errors
 #
 apiVersion: v1
 kind: Service

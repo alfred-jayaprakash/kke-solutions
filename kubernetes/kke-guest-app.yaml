@@ -1,0 +1,132 @@
+#
+# Step 1: kubectl create -f <this file>
+# Step 2: Wait for the pods to be in 'Running' state. Note down any
+#         frontend pod's name i.e. frontend-xxxxx
+# Step 3: Verify: kubectl exec frontend-xxxxx -- curl http://localhost/
+#         You should see a valid HTML content being returned
+# Step 4: Verify: Open Guesbook app on browser by clicking 'Open Port on Host 1'
+#         and port as NodePort below. You should see Guestbook app without any errors
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master
+spec:
+  type: ClusterIP
+  selector:
+    app: redis-master
+    tier: back-end
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-slave
+spec:
+  type: ClusterIP
+  selector:
+    app: redis-slave
+    tier: back-end
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: NodePort
+  selector:
+    app: guestbook
+    tier: front-end
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30009
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-master
+      tier: back-end
+  template:
+    metadata:
+      labels:
+        app: redis-master
+        tier: back-end
+    spec:
+      containers:
+        - name: master-redis-xfusion
+          image: redis
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-slave
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-slave
+      tier: back-end
+  template:
+    metadata:
+      labels:
+        app: redis-slave
+        tier: back-end
+    spec:
+      containers:
+        - name: slave-redis-xfusion
+          image: gcr.io/google_samples/gb-redisslave:v3
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+          env:
+            - name: GET_HOSTS_FROM
+              value: dns
+          ports:
+            - containerPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: front-end
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: front-end
+    spec:
+      containers:
+        - name: php-redis-xfusion
+          image: gcr.io/google-samples/gb-frontend:v4
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+          env:
+            - name: GET_HOSTS_FROM
+              value: dns
+          ports:
+            - containerPort: 80

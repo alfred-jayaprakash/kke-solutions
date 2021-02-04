@@ -1,5 +1,8 @@
 #
 # Step 1: kubectl create -f <this file>
+# Step 2: Make sure the pod is in Running state
+# Step 3: Verify: `kubectl logs print-envars-greeting`
+#     You should see 'Welcome to xFusionCorp Industries' printed by the Pod
 #
 apiVersion: v1
 kind: Pod

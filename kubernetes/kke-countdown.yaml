@@ -1,5 +1,8 @@
 #
 # Step 1: kubectl create -f <this file>
+# Step 2: Make sure the pod is in Running state. Note down the name i.e. countdown-datacenter-xxxx
+# Step 3: Verify: `kubectl logs countdown-datacenter-xxxx`
+#     You should see the values in args below printed
 #
 apiVersion: batch/v1
 kind: Job
