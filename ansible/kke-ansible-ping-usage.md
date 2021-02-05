@@ -9,3 +9,6 @@
 * Finally, change to the `/home/thor/ansible` directory and test using Ansible adhoc ping command as:
 `ansible stapp01 -m ping -i inventory -v`
 You should see the message 'SUCCESS' in the output
+
+---
+For tips on getting better at KodeKloud Engineer Ansible tasks, [click here](./README.md)

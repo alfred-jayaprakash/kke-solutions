@@ -1,6 +1,12 @@
 #
-# Step 1: Simply save this file as playbook.yml
-# Step 2: ansible-playbook -i inventory playbook.yml
+# Step 1: Simply save this file as playbook.yml in the required folder
+# Step 2: Run `ansible-playbook -i inventory playbook.yml`
+# Step 3: Verify: Check that the files have been updated correctly by running
+#         ansible all -a "ls -ltr /var/www/html/" -i inventory
+#         ansible all -a "cat /var/www/html/index.html" -i inventory
+#
+# For tips on getting better at Ansible tasks, check out the README.md
+# in this folder
 #
 - name: Install httpd and setup index.html
   hosts: stapp01, stapp02, stapp03

@@ -39,3 +39,6 @@ Perform the following steps on each of the app servers
 * Exit to Jump Host and perform a scp of the index.html to the export directory on ststor01:
 `scp natasha@ststor01:/webdata`
 * SSH to individual app servers and check that you are able to see the `index.html` under the mounted directory i.e. `/var/www/html`
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

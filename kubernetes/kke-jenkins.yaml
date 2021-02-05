@@ -10,6 +10,9 @@
 # Step 6: Verify: Open Jenkins app on browser by clicking 'Open Port on Host 1'
 #         and port as NodePort below. You should see the page without any errors
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: v1
 kind: Service
 metadata:

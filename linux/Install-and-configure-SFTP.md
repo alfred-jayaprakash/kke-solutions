@@ -32,3 +32,6 @@ sudo chmod 755 /var/www
 ## Verification
 * Try to do a SSH to the host using the newly created user. e.g. `ssh javed@stapp03`. It should fail.
 * Try to do a SFTP to the host using the newly created user. e.g. `sftp javed@stapp03`. It should succeed.
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

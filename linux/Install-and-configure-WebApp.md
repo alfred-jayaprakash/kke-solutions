@@ -35,3 +35,6 @@ curl http://stapp03:8080/news/
 curl http://stapp03:8080/cluster/
 ```
 * Finally, access the Loadbalancer URL by clicking `Select port to view on Host 1`, and adding port `80` click on Display Port. Edit, the address bar to add the paths `/news/` and `/cluster/` to check you can see the respective pages.
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

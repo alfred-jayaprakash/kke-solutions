@@ -58,3 +58,6 @@ define('DB_PASSWORD', 'kodekloud');
 #### Verify WordPress setup
 * Click tab `Select port to view on Host 1`, and after adding port 80 click on Display Port
 * You should see a sample Blog WordPress site loaded
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

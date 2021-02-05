@@ -6,6 +6,10 @@
 #         and port as each of the NodePorts below (http, https and stat).
 #         You should see the page loaded successfully
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+---
 #
 # Service Account definition
 #

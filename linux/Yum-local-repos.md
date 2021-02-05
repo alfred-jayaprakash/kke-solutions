@@ -16,7 +16,8 @@ protect=1
 
 ## Verification
 * Install yum-utils by running `sudo yum install -y yum-utils`
-* Run repoquery to find out which repo the package was installed from e.g. `repoquery -i httpd`
+* Run repoquery to find out which repo the package was installed from e.g. `repoquery -i httpd`.
+See the 'Repository' field below.
 ```
 Name        : httpd
 Version     : 2.4.6
@@ -32,3 +33,6 @@ Source      : httpd-2.4.6-97.el7.centos.src.rpm
 Description :
 The Apache HTTP Server is a powerful, efficient, and extensible web server.
 ```
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

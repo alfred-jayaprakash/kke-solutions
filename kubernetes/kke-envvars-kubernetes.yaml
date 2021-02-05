@@ -9,6 +9,9 @@
 #     in the following prompt run: `printenv`
 #     You should see all the environment variables printed
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: v1
 kind: Pod
 metadata:

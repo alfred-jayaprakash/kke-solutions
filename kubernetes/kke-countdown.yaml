@@ -4,6 +4,9 @@
 # Step 3: Verify: `kubectl logs countdown-datacenter-xxxx`
 #     You should see the values in args below printed
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: batch/v1
 kind: Job
 metadata:

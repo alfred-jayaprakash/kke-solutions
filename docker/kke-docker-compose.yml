@@ -1,3 +1,12 @@
+#
+# Step 1: Save this file as docker-compose.yml in the required directory
+# Step 2: Run `docker-compose up`. Wait for the container to be up.
+# Step 3: Verify: Open another terminal and run `curl http://localhost:3002`
+#         You should get a valid HTML content back
+#
+# For tips on getting better at Docker tasks, check out the README.md
+# in this folder
+#
 version: "3.3"
 services:
   httpd:

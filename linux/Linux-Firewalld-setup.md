@@ -25,3 +25,6 @@ firewall-cmd --list-all --zone=public
 * Execute curl command from Jump Host to the Apache port on all hosts. You should get a connection timed out. For example - `curl -I http://stapp01:9999/`
 * Execute curl command from Jump Host to the Nginx port on all hosts. You should see a valid response. For example - `curl -I http://stapp01:8888/`
 * Execute the same curl command from Loadbalancer Host (stlb01) to the Nginx and Apache ports on all hosts (You should SSH to stlb01 first). For both Nginx and Apache ports, you should receive valid responses from respective servers.
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

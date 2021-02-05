@@ -37,3 +37,6 @@ iptables -nvL
 ## Verification
 * Execute curl command from Jump Host to the given ports on all hosts. You should get a connection timed out. For example - `curl -I http://stapp01:5000/`
 * Execute the same curl command from Loadbalancer Host (stlb01) to the given ports on all hosts (You should SSH to stlb01 first). You should see a valid response returned from the servers.
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

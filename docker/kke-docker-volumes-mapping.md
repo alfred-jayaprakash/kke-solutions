@@ -10,3 +10,6 @@
 
 ## Verification
 * Check that the file you copied in the last step can be seen in the container: `sudo docker -it apps ls /usr/src`
+
+---
+For tips on getting better at KodeKloud Engineer Docker tasks, [click here](./README.md)

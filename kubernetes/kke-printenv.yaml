@@ -4,6 +4,9 @@
 # Step 3: Verify: `kubectl logs print-envars-greeting`
 #     You should see 'Welcome to xFusionCorp Industries' printed by the Pod
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: v1
 kind: Pod
 metadata:

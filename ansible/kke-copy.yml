@@ -1,3 +1,12 @@
+#
+# Step 1: Simply save this file as playbook.yml in the required folder
+# Step 2: Run `ansible-playbook -i inventory playbook.yml`
+# Step 3: Verify: Check that the files have been copied correctly by running
+#         ansible all -a "ls -ltr /opt/security/" -i inventory
+#
+# For tips on getting better at Ansible tasks, check out the README.md
+# in this folder
+#
 - name: Ansible copy
   hosts: appservers
   become: yes

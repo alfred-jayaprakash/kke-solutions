@@ -4,6 +4,9 @@
 # Step 3: Verify: kubectl exec <podname> -- curl http://localhost:8080/
 #         You should see a valid HTML content being returned
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:

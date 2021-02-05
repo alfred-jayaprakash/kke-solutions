@@ -18,3 +18,6 @@ systemctl status puppetserver
 * Ensure puppetserver is running by using the following command:
 `/opt/puppetlabs/server/apps/puppetserver/bin/puppetserver -v`
 
+---
+For general tips on getting better at KodeKloud Engineer Puppet tasks, [click here](./README.md)
+

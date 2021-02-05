@@ -6,6 +6,9 @@
 #         /opt/devops/time/time-check.log
 #         You should see the date/time printed every TIME_FREQ secs below
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: v1
 kind: ConfigMap
 metadata:

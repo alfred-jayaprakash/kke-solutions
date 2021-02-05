@@ -3,6 +3,9 @@
 # Step 2: kubectl create -f <This file>
 # Step 3: Verify: Wait until the pod is in running state on node01
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: apps/v1
 kind: Deployment
 metadata:

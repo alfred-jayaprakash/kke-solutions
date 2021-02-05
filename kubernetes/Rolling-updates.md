@@ -12,3 +12,6 @@ deployment 'nginx-deployment' successfully rolled out
 
 ## Verification
 * Run describe of the pods to verify that the image version has been updated e.g. `kubectl describe pod nginx-deployment-asfdsf`
+
+---
+For tips on getting better at KodeKloud Engineer Kubernetes tasks, [click here](./README.md)

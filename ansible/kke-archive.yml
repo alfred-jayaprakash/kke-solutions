@@ -2,6 +2,9 @@
 # Step 1: Simply save this file as playbook.yml
 # Step 2: ansible-playbook -i inventory playbook.yml
 #
+# For tips on getting better at Ansible tasks, check out the README.md
+# in this folder
+#
 - name: Create archive and copy
   hosts: stapp01, stapp02, stapp03
   become: yes

@@ -8,6 +8,9 @@
 # Step 5: Verify: Click 'Select port to view on Host 1' and provide the Node Port below.
 #         You should see the page.
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: v1
 kind: Service
 metadata:

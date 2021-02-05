@@ -4,6 +4,9 @@
 # Step 3: Verify: kubectl exec pod-datacenter -- curl http://localhost/
 #         You should get back a valid HTML content
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: v1
 kind: PersistentVolume
 metadata:

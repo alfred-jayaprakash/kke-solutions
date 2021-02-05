@@ -7,6 +7,9 @@
 # Step 4: Verify: Open Guesbook app on browser by clicking 'Open Port on Host 1'
 #         and port as NodePort below. You should see Guestbook app without any errors
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: v1
 kind: Service
 metadata:

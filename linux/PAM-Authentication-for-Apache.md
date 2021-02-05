@@ -26,3 +26,6 @@ sudo systemctl status httpd
 * Repeat the steps for other appserver hosts. Either you can SSH to individual host to run or test from Jump Host e.g. `curl -I http://stapp01:8080/protected/`
 * Finally, test the loadbalancer URL in browser by accessing `Select Port to View on Host 1` and provide port `80`. You should see the browser prompting you for Id and Password. After giving the Id and Password from question, the page should load successfully.
 
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)
+

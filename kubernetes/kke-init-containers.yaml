@@ -9,6 +9,9 @@
 #         You should see the message "Init Done - Welcome to xFusionCorp Industries"
 #         printed every 5 secs
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 apiVersion: apps/v1
 kind: Deployment
 metadata:

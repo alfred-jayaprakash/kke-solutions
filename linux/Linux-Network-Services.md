@@ -9,3 +9,6 @@ The task is actually simpler than it sounds. In this example, let's take that th
 
 ## Verification
 * Test connectivity again from Jump Host to all 3 appservers using curl i.e. `curl http://stapp01:8089/`. You should see the default index page HTML printed.
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)

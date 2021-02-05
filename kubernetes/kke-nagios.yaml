@@ -6,8 +6,11 @@
 #         question
 #         e.g. htpasswd -c /usr/local/nagios/etc/htpasswd.users xFusionCorp
 # Step 5: Verify: successful completion by opening Nagios Core Web Interface on browser
-# (Open Port on Host 1). You should be able to login using the newly created ID and
-# password
+#         (Open Port on Host 1). You should be able to login using the newly created ID and
+#         password
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
 #
 apiVersion: v1
 kind: Service

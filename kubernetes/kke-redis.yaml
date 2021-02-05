@@ -8,6 +8,9 @@
 # Step 4: Verify: Open app on browser by clicking 'Open Port on Host 1'
 #         and port as NodePorts below. You should see the page without any errors
 #
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
 ---
 apiVersion: v1
 kind: PersistentVolume

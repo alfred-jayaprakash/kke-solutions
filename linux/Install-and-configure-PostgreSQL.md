@@ -41,3 +41,6 @@ sudo systemctl status postgresql
 ```
 sudo psql -U kodekloud_aim -d kodekloud_db1 -h localhost -W
 ```
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)
