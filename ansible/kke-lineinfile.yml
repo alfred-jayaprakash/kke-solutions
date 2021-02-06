@@ -1,0 +1,34 @@
+#
+# Step 1: Simply save this file as playbook.yml in the required folder
+# Step 2: Run `ansible-playbook -i inventory playbook.yml`
+# Step 3: Verify: Check that the files have been updated correctly by running
+#         ansible all -a "ls -ltr /var/www/html/" -i inventory
+#         ansible all -a "cat /var/www/html/index.html" -i inventory
+#
+# For tips on getting better at Ansible tasks, check out the README.md
+# in this folder
+#
+- name: Install httpd and setup index.html
+  hosts: stapp01, stapp02, stapp03
+  become: yes
+  tasks:
+    - name: Install httpd
+      package:
+        name: httpd
+        state: present
+    - name: Start service httpd, if not started
+      service:
+        name: httpd
+        state: started
+    - name: Add content in index.html. Create file if it does not exist and set file attributes
+      copy:
+        dest: /var/www/html/index.html
+        content: This is a Nautilus sample file, created using Ansible!
+        mode: "0655"
+        owner: apache
+        group: apache
+    - name: Update content in index.html
+      lineinfile:
+        path: /var/www/html/index.html
+        insertbefore: BOF
+        line: Welcome to xFusionCorp Industries!
