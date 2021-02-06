@@ -16,7 +16,7 @@ scp -r /home/thor/cluster steve@stapp02:/tmp
 scp -r /home/thor/news banner@stapp03:/tmp
 scp -r /home/thor/cluster banner@stapp03:/tmp 
 ```
-* SSH back to the appserver hosts and move the folders under `/var/www/html` e.g. `sudo mv /tmp/news /var/www/html` and `sudo mv /tmp/cluster /var/www/cluster`
+* SSH back to the appserver hosts and move the folders under `/var/www/html` e.g. `sudo mv /tmp/news /var/www/html/` and `sudo mv /tmp/cluster /var/www/html/`
 * Now edit `/etc/httpd/conf/httpd.conf` in each server to change the Listen port to 8080
 * Restart and Enable httpd
 ```
