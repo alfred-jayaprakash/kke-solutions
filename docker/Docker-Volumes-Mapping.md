@@ -13,6 +13,3 @@
 
 ---
 For tips on getting better at KodeKloud Engineer Docker tasks, [click here](./README.md)
-
----
-For tips on getting better at KodeKloud Engineer Docker tasks, [click here](./README.md)
