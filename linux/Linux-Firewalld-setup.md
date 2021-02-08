@@ -7,7 +7,7 @@
 * SSH to one of the appservers and note down the Apache port and Nginx ports respectively
   * Apache port is specified under `/etc/httpd/conf/httpd.conf` (Look for the line `Listen: `)
   * Nginx port is specified under `/etc/nginx/nginx.conf` (Look for the line `listen [::]::`)
-* Create a bash script in all the appserver hosts with the below content (Replace the port 8888 and 9999 with Nginx and Apache ports respectively)
+* Create a bash script offline with the below content using a text editor. Then copy-paste the script to all the hosts and execute it (Replace the port 8888 and 9999 with Nginx and Apache ports respectively). This is not only time-saving but also less error-prone.
 ```UNIX
 #!/bin/bash
 yum install firewalld -y

@@ -12,7 +12,14 @@
   * You can also use Telnet to verify connectivity to a specific port: `telnet stapp01 8080`. Ensure that you do not see any connection errors.
   * For some tasks, you need to use browser by clicking `Open Port on Host 1` tab to open the site on specific port (especially the Wordpress task)
   * For tasks that involve iptables, use `iptables -nvL` to list all the rules in a simple-to-understand format
-  * For some tasks, it may be time-saving and less error-prone if you rather create a shell script with all the required commands and execute them on all the required hosts. This will help you to easily go for bonus points. e.g. Tasks that require you to configure Iptables or Firewalld
+  * For some tasks, it may be time-saving and less error-prone if you rather create a shell script, with all the required commands, offline using your favourite IDE. Then you can copy-paste the script to each required host and execute it. This will help you to easily go for bonus points. e.g. Tasks that require you to configure Iptables or Firewalld
+
+## Common mistakes
+* Not reading the question properly. Especially, when you redo the same question, all the names and port values would've changed in the new question. So pay attention to that. 
+* To restart a systemd service after performing changes (like nginx.conf,httpd.conf, sshd.config), you run `sudo systemctl restart <service>` and not `sudo systemctl start <service>`. The problem with using `start` option is, if the service is already running then nothing is done. So your changes never take effect.
+* For Firewalld tasks, most people miss out on reloading the firewall rules by running `sudo firewall-cmd --reload`
+* For Iptables tasks, forgetting to persist the iptables rules is another common mistake: `sudo service iptables save`
+
 
 ---
 For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)

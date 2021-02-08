@@ -2,7 +2,7 @@
 ## General Kubernetes Tips
 * Always create your Kubernetes YAML configurations offline as you would do in real-life. I use 'Visual Studio Code' to create my YAML file as per the question and then apply it in the KKE environment.
 * Navigate to `/tmp` directory and create your Kubernetes configuration file. Then you can simply run `kubectl create -f yourfile.yaml`. You don't need to use sudo privileges.
-* Another important tip is to make use of [Katakoda Kubernetes Playground](https://www.katacoda.com/courses/kubernetes/playground) to test your changes.
+* Another important tip is to make use of the free [Katakoda Kubernetes Playground](https://www.katacoda.com/courses/kubernetes/playground) to test your changes.
 As this is a Katakoda environment, it works in the same way as Kodekloud Engineer. Good thing is that
 there is no time limit. Also you can easily close browser and open another environment quickly. So, the
 advice here is to:
