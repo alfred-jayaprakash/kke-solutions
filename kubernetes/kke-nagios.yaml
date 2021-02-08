@@ -1,13 +1,14 @@
 #
 # Step 1: kubectl create -f <this file>
 # Step 2: Wait for the pods to be in 'Running' state. Note down pod name.
-# Step 3: Open shell to pod: kubectl exec --stdin --tty <pod name> -- /bin/bash
+# Step 3: Open shell to pod: kubectl exec -it <pod name> -- /bin/bash
 # Step 4: Create the user that question asks for and when prompted copy-paste password from
-#         question
-#         e.g. htpasswd -c /usr/local/nagios/etc/htpasswd.users xFusionCorp
-# Step 5: Verify: successful completion by opening Nagios Core Web Interface on browser
-#         (Open Port on Host 1). You should be able to login using the newly created ID and
-#         password
+#         question and supply to this command:
+#         e.g. htpasswd /opt/nagios/etc/htpasswd.users xFusionCorp
+# Step 5: Verify: 4. Try `curl http://localhost/` (it should fail)
+#         Try curl -u xFusionCorp:xxxxx http://localhost/ (it should display homepage)
+# Step 6: Verify: Open Nagios Core Web Interface on browser (Open Port on Host 1).
+#         You should be able to login using the newly created ID and password
 #
 # For tips on getting better at Kubernetes tasks, check out the README.md
 # in this folder
