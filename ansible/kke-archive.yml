@@ -1,6 +1,8 @@
 #
 # Step 1: Simply save this file as playbook.yml
 # Step 2: ansible-playbook -i inventory playbook.yml
+# Step 3: Verify: Check that the archive exists in the target directory with correct owner/group
+#         ansible all -a "ls -ltr /opt/devops/" -i inventory
 #
 # For tips on getting better at Ansible tasks, check out the README.md
 # in this folder
@@ -11,8 +13,9 @@
   tasks:
     - name: Create the archive and set the owner
       archive:
-        path: /usr/src/finance
-        dest: /opt/finance/apps.tar.gz
+        path: /usr/src/devops/
+        dest: /opt/devops/official.tar.gz
         format: gz
         force_archive: true
         owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
