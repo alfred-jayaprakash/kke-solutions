@@ -3,48 +3,49 @@
 ### Step 1 - MariaDB installation and configuration
 * Login to Database host (stdb01)
 * Install and enable MariaDB server
-```
-sudo yum install httpd mariadb mariadb-server 
+```UNIX
+sudo yum install httpd mariadb mariadb-server -y
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 sudo systemctl status mariadb
 ```
-* Setup MariaDB using the built-in secure installation script
-```
+* Setup MariaDB using the built-in secure installation script (Default Root password is blank. So just press enter)
+```UNIX
 sudo mysql_secure_installation
 ```
 * When prompted, provide the following values
 ```
 Set root password? [Y/n] n
-Remove anonymous users? [Y/n] y
-Disallow root login remotely? [Y/n] y
-Remove test database and access to it? [Y/n] y
-Reload privilege tables now? [Y/n] y
+Remove anonymous users? [Y/n] Y
+Disallow root login remotely? [Y/n] Y
+Remove test database and access to it? [Y/n] Y
+Reload privilege tables now? [Y/n] Y
 ```
-* Set the MariaDB Root password using below
-```
+* Set the MariaDB Root password using below (Default Root password is blank. So just press enter)
+```UNIX
 mysql -u root -p
 ```
-Once you've setup the root password create the database, the user and grant them privileges ('kodekloud' is set as the password here)
-```
+Once you have logged in, then run the below SQL commands:
+```SQL
 MariaDB [(none)]>CREATE DATABASE kodekloud_db5;
 MariaDB [(none)]>GRANT ALL PRIVILEGES on kodekloud_db5.* to 'kodekloud_roy'@'%' identified by 'kodekloud';
 MariaDB [(none)]>FLUSH PRIVILEGES;
 MariaDB [(none)]>exit
 ```
 * Now to go Jump Host and copy the Database script to /tmp directory on stdb01
-```
+```UNIX
 scp /home/thor/db.sql peter@stdb01:/tmp
 ```
 * Now login back to database host and load the database script as below
-```
+```UNIX
 mysql -u kodekloud_roy -p kodekloud_db5 < /tmp/db.sql
 ```
 #### Verify MariaDB setup
-* Use mysqlshow to verify that the account you created works as expected. You should see all the WordPress tables listed (wp...)
-```
+* Use mysqlshow to verify that the account you created works as expected, especially with host as stdb01. You should see all the WordPress tables listed (wp...)
+```UNIX
 mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5
 ```
+In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 -p kodekloud_db5`
 
 ### Step 2 - WordPress configuration
 * Login to storage server (ststor01)
