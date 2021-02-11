@@ -18,7 +18,7 @@ protect=1
 * Install yum-utils by running `sudo yum install -y yum-utils`
 * Run repoquery to find out which repo the package was installed from e.g. `repoquery -i httpd`.
 See the 'Repository' field below.
-```
+``` Java Properties
 Name        : httpd
 Version     : 2.4.6
 Release     : 97.el7.centos
@@ -27,7 +27,7 @@ Size        : 9821064
 Packager    : CentOS BuildSystem <http://bugs.centos.org>
 Group       : System Environment/Daemons
 URL         : http://httpd.apache.org/
-Repository  : updates
+Repository  : yum_local
 Summary     : Apache HTTP Server
 Source      : httpd-2.4.6-97.el7.centos.src.rpm
 Description :
