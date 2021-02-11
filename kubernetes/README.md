@@ -26,9 +26,38 @@ advice here is to:
       * `kubectl logs <podname>`. For example, `kubectl logs my-pod` 
       
 ## Common mistakes
+* Not reading the question properly. Especially, when you redo the same question, all the names and port values would've changed in the new question. So pay attention to that. 
 * Not waiting until the Pods are in `Running` state. Check the pods are in `Running` before you press that `Finish` button.
 * Not paying attention to namespaces. Make sure all the required resources are in the correct namespace.
-* Not reading the question properly. Especially, when you redo the same question, all the names and port values would've changed in the new question. So pay attention to that. 
+* Selector labels are often misunderstood, especially in tasks that require defining a service and a deployment. Note that when a service and a deployment is involved, there are totally 5 places labels will be used.
+The below is a simplistic example where a label is shown in each of the 5 places. Now:
+  * LABEL A and LABEL C are resource-level labels. They are just used for identification purposes. They can be set to any values or as per question.
+  * Service selector LABEL B is important and should match pod label LABEL E. Selector labels are like `search criteria` and are used to identify the pods that need to be exposed.
+  * Deployment selector LABEL D should also match pod label LABEL E. This is to tell Kubernetes which Pod the Deployment should manage.
+  * Due to lack of understanding, people configure all the labels with same values. But this will work fine as (LABEL B == LABEL E) and (LABEL D == LABEL E)
+```
+apiVersion: ....
+kind: Service
+metadata:
+  labels:
+     [LABEL A]
+spec:
+  selector:
+     matchLabels:
+       [LABEL B]
+---
+apiVersion: ....
+kind: Deployment
+metadata:
+  labels:
+     [LABEL C]
+spec:
+  selector:
+     matchLabels:
+       [LABEL D]
+  template: 
+     [LABEL E]   
+```
 
 ---
 For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)
