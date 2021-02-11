@@ -29,13 +29,13 @@ advice here is to:
 * Not reading the question properly. Especially, when you redo the same question, all the names and port values would've changed in the new question. So pay attention to that. 
 * Not waiting until the Pods are in `Running` state. Check the pods are in `Running` before you press that `Finish` button.
 * Not paying attention to namespaces. Make sure all the required resources are in the correct namespace.
-* Selector labels are often misunderstood, especially in tasks that require defining a service and a deployment. Note that when a service and a deployment is involved, there are totally 5 places labels will be used.
+* Selector labels are often misunderstood, especially in tasks that require defining a service and a deployment. Note that when a service and a deployment are involved, there are totally 5 places where labels will be used.
 The below is a simplistic example where a label is shown in each of the 5 places. Now:
-  * LABEL A and LABEL C are resource-level labels. They are just used for identification purposes. They can be set to any values or as per question.
-  * Service selector LABEL B is important and should match pod label LABEL E. Selector labels are like `search criteria` and are used to identify the pods that need to be exposed.
-  * Deployment selector LABEL D should also match pod label LABEL E. This is to tell Kubernetes which Pod the Deployment should manage.
+  * 'LABEL A' and 'LABEL C' are resource-level labels. They are just used for identification purposes. They can be set to any values or as per question.
+  * Service selector 'LABEL B' is important and should match pod label 'LABEL E'. Selector labels are like 'search criteria' and are used to identify the pods that need to be exposed.
+  * Deployment selector 'LABEL D' should also match pod label 'LABEL E'. This is to tell Kubernetes which Pod the Deployment should manage.
   * Due to lack of understanding, people configure all the labels with same values. But this will work fine as (LABEL B == LABEL E) and (LABEL D == LABEL E)
-```
+```yaml
 apiVersion: ....
 kind: Service
 metadata:
@@ -56,9 +56,28 @@ spec:
      matchLabels:
        [LABEL D]
   template: 
-     [LABEL E]   
+    metadata:
+      labels:
+        [LABEL E]   
 ```
-
+In case of a Service and Pod, there are only 3 labels (See below). Labels B and C should match:
+```yaml
+apiVersion: ....
+kind: Service
+metadata:
+  labels:
+     [LABEL A]
+spec:
+  selector:
+     matchLabels:
+       [LABEL B]
+---
+apiVersion: ....
+kind: Pod
+metadata:
+  labels:
+     [LABEL C] 
+```
 ---
 For general tips on getting better at KodeKloud Engineer tasks, [click here](../README.md)
 
