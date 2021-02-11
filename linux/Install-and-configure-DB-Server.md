@@ -9,7 +9,7 @@ sudo systemctl start mariadb
 sudo systemctl enable mariadb
 sudo systemctl status mariadb
 ```
-* Setup MariaDB using the built-in secure installation script (Default Root password is blank. So just press enter)
+* Setup MariaDB using the built-in secure installation script (Default Root password is blank. So just press ENTER)
 ```UNIX
 sudo mysql_secure_installation
 ```
@@ -21,7 +21,7 @@ Disallow root login remotely? [Y/n] Y
 Remove test database and access to it? [Y/n] Y
 Reload privilege tables now? [Y/n] Y
 ```
-* Set the MariaDB Root password using below (Default Root password is blank. So just press enter)
+* Login to database using the root user (default password is blank. So just press ENTER)
 ```UNIX
 mysql -u root -p
 ```
@@ -41,7 +41,7 @@ scp /home/thor/db.sql peter@stdb01:/tmp
 mysql -u kodekloud_roy -p kodekloud_db5 < /tmp/db.sql
 ```
 #### Verify MariaDB setup
-* Use mysqlshow to verify that the account you created works as expected, especially with host as stdb01. You should see all the WordPress tables listed (wp...)
+* Use mysqlshow to verify that the account you created works as expected, especially with host as stdb01. You should see all the WordPress tables listed i.e. wp...
 ```UNIX
 mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5
 ```
