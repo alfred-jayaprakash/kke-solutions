@@ -45,6 +45,6 @@ sudo systemctl status postgresql
 ```
 sudo psql -U kodekloud_aim -d kodekloud_db1 -h localhost -W
 ```
-If you see an error like `psql: FATAL:  Ident authentication failed` then it means you have not edited `pg_hba.conf` properly.
+* If you see an error like `psql: FATAL:  Ident authentication failed` then it means you have not edited `pg_hba.conf` properly.
 ---
 For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)
