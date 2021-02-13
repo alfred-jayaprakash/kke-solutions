@@ -1,7 +1,8 @@
 #
 # Step 1: Simply save this file as playbook.yml in the required folder
-# Step 2: Run `ansible-playbook -i inventory playbook.yml`
-# Step 3: Verify: Check that the files created by running
+# Step 2: Edit the file path, filename and permissions accordingly
+# Step 3: Run `ansible-playbook -i inventory playbook.yml`
+# Step 4: Verify: Check that the files created by running
 #         ansible all -a "ls -ltr /tmp/" -i inventory
 #
 # For tips on getting better at Ansible tasks, check out the README.md
@@ -9,6 +10,7 @@
 #
 - name: Create file in appservers
   hosts: stapp01, stapp02, stapp03
+  become: yes
   tasks:
     - name: Create the file and set properties
       file:
