@@ -1,0 +1,24 @@
+#
+# Step 1: kubectl create -f <this file>
+# Step 2: Make sure the pod is in Running state. Note down the name i.e. httpd-xxxxxx
+# Step 3: Verify: `kubectl logs httpd-xxxx` to see Apache started up
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd
+spec:
+  selector:
+    matchLabels:
+      app: httpd
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+        - name: httpd-container
+          image: httpd:latest
