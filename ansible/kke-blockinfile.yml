@@ -16,18 +16,16 @@
       package:
         name: httpd
         state: present
-    - name: Add content in index.html
+    - name: Add content block in index.html and set permissions
       blockinfile:
         path: /var/www/html/index.html
+        create: yes
         block: |
           Welcome to XfusionCorp!
 
           This is Nautilus sample file, created using Ansible!
 
           Please do not modify this file manually!
-    - name: Ensure owner and permissions for index.html
-      file:
-        path: /var/www/html/index.html
         owner: apache
         group: apache
         mode: "0644"
