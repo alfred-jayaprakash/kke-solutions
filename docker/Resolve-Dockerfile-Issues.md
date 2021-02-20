@@ -1,7 +1,7 @@
 # Resolve Dockerfile Issues
 ## Solution
 * Initially, the file looks like this
-```
+```Dockerfile
 IMAGE httpd:2.4.43
 
 ADD sed -i "s/Listen 80/Listen 8080/g" /usr/local/apache2/conf/httpd.conf
@@ -17,7 +17,7 @@ COPY certs/server.key /usr/local/apache2/conf/server.key
 COPY html/index.html /usr/local/apache2/htdocs/
 ```
 * After replacing with valid directives (IMAGE with FROM and ADD with RUN), the file should look like this
-```
+```Dockerfile
 FROM httpd:2.4.43
 
 RUN sed -i "s/Listen 80/Listen 8080/g" /usr/local/apache2/conf/httpd.conf
