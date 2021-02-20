@@ -2,7 +2,7 @@
 ## General Docker Tips
 * For tasks that require you to troubleshoot a Dockerfile or create a Dockerfile, make sure you test the file by running a docker build on the same directory as Dockerfile:
 `docker build -t my_image .`
-* Another important tip is to make use of the free [Katakoda Kubernetes Playground](https://www.katacoda.com/courses/kubernetes/playground) to test your Docker changes. Although this is a Kubernetes environment, this comes with a Docker setup. So the recommendation is to:
+* Another important tip is to make use of the free [Katakoda Docker Playground](https://www.katacoda.com/courses/docker/playground) to test your Docker changes. So the recommendation is to:
   * Open the task in Kodekloud Engineer, note down the question and press `Try Later`
   * Open KataKoda Playground, prepare docker commands, execute and test your changes until you are satisified
   * Reopen question in Kodekloud Engineer, apply your changes and verify. Bam! You finished your task in time for bonus points.

@@ -82,3 +82,6 @@ sudo systemctl status httpd
   * On the resulting browser page add `/index.php` in the address bar
   * You should see PHP info page. Make sure the PHP version shown is same as the question
   * With each reload of page, the `System` should change between stapp01, stapp02 and stapp03
+
+---
+For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)

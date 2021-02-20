@@ -28,4 +28,4 @@ service jenkins status
 * Logout from the Dashboard above. You will see the Login page.
 * Use the ID and Password from the question e.g.theadmin/Adm!n321 to login. Ensure you are able to see the Dashboard again.
 ---
-For tips on getting better at KodeKloud Engineer Docker tasks, [click here](./README.md)
+For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)

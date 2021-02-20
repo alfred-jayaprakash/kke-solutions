@@ -9,3 +9,6 @@
 
 ## Verification
 * Again go back to 'Manage Jenkins' > 'Manage Plugins' > 'Installed' to check `Git` and `Git Lab` are listed.
+
+---
+For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)
