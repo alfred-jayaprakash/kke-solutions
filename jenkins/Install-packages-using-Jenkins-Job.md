@@ -69,9 +69,9 @@ sudo systemctl status httpd
 ### Step 6:Run the build
 * Click the newly created job, `httpd-php` on the home page and in the following screen click `Build Now`
 * You should see a new build starting up on the left lower screen
-* Click that build and click 'View console` and monitor for any errors 
+* Click that build and click `Console Output` and search the log for any errors 
 * Wait until the build is completed successfully and run the 'Verification' steps below
-* Click the 'Build Now' again and monitor console for any errors. Task expects that you should be able to click 'Build' any number of times and there are no errors.
+* Click the 'Build Now' again and monitor console output for any errors. Task expects that you should be able to click 'Build' any number of times and there are no errors.
 * Perform verification steps below again
 
 ## Verification
