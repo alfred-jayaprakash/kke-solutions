@@ -1,8 +1,9 @@
 # Step 1: kubectl create -f <this file>
 # Step 2: Wait for the pod to be in 'Running' state
-# Step 3: Verify: kubectl exec nginx-phpfpm -- curl -I http://localhost:8098/
-#         You should get back a valid server response. You may get a HTTP 403.
-#         That's fine though
+# Step 3: Verify:
+#         kubectl exec nginx-phpfpm -- echo “<?phpinfo();?>” > /var/www/html/index.php
+#         kubectl exec nginx-phpfpm -- curl http://localhost:8098/
+#         You should get back a valid server response.
 #
 # For tips on getting better at Kubernetes tasks, check out the README.md
 # in this folder
@@ -18,8 +19,13 @@ data:
       server {
         listen 8098;
         index index.html index.htm index.php;
-        location / {
-          root  /var/www/html;
+        root  /var/www/html;
+
+        location ~ \.php$ {
+          include fastcgi_params;
+          fastcgi_param REQUEST_METHOD $request_method;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          fastcgi_pass 127.0.0.1:9000;
         }
       }
     }
