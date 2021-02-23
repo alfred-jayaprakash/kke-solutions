@@ -1,0 +1,51 @@
+# Step 1: kubectl create -f <this file>
+# Step 2: Wait for the pod to be in 'Running' state
+# Step 3: Verify: kubectl exec nginx-phpfpm -- curl -I http://localhost:8098/
+#         You should get back a valid server response. You may get a HTTP 403.
+#         That's fine though
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+    events {} 
+    http {
+      server {
+        listen 8098;
+        index index.html index.htm index.php;
+        location / {
+          root  /var/www/html;
+        }
+      }
+    }
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-phpfpm
+spec:
+  volumes:
+    - name: shared-files
+      emptyDir: {}
+    - name: nginx-config-volume
+      configMap:
+        name: nginx-config
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - name: shared-files
+          mountPath: /var/www/html
+        - name: nginx-config-volume
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+    - name: php-fpm-container
+      image: php:7.3-fpm
+      volumeMounts:
+        - name: shared-files
+          mountPath: /var/www/html
