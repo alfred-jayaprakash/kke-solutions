@@ -13,4 +13,5 @@ This task involves configuring security settings for a project using 'Project-ba
 ## Verification
 * Login using the users given in the question and click the project `Packages`
 * You should see the `Configure` and `Build Now` accordingly as per the access you had given to the users
-
+---
+For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)

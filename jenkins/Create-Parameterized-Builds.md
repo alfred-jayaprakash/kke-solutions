@@ -42,3 +42,5 @@ Building in workspace /var/jenkins_home/workspace/parameterized-job
 Build Development
 Finished: SUCCESS
 ```
+---
+For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)

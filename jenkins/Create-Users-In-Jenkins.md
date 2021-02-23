@@ -30,5 +30,6 @@ Fullname: Mariyam
 * You should be able to see the minimal dashboard
 * You should also be able to see the Job that was already present in the question
 * Click the Job and you should not see any configure option but only read-only access to the job
-
+---
+For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)
 
