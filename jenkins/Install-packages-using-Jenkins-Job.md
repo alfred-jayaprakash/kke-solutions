@@ -57,7 +57,7 @@ and under `SSH Site` select `tony@stapp01:22`
 sudo yum -y install epel-release
 sudo yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum install -y yum-utils
-sudo yum-config-manager --enable remi-php71
+sudo yum-config-manager --enable remi-php70
 sudo yum install -y php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlnd httpd
 sudo sed -i 's/^Listen 80$/Listen 8082/g' /etc/httpd/conf/httpd.conf
 sudo systemctl restart httpd
