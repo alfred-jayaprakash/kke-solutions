@@ -1,9 +1,12 @@
-# Step 1: kubectl create -f <this file>
-# Step 2: Wait for the pod to be in 'Running' state
-# Step 3: Verify:
-#         kubectl exec nginx-phpfpm -- echo “<?phpinfo();?>” > /var/www/html/index.php
-#         kubectl exec nginx-phpfpm -- curl http://localhost:8098/
-#         You should get back a valid server response.
+# Step 1: Change port and image versions according to the question
+# Step 2: kubectl create -f <this file>
+# Step 3: Wait for the nginx-phpfpm pod to be in 'Running' state
+# Step 4: Verify:
+#         kubectl exec it nginx-phpfpm -- /bin/bash
+#         In the resulting shell prompt run the following:
+#         echo "<?phpinfo();?>" > /var/www/html/index.php
+#         curl http://localhost:8098/
+#         You should get back a valid PHPInfo HTML page.
 #
 # For tips on getting better at Kubernetes tasks, check out the README.md
 # in this folder
