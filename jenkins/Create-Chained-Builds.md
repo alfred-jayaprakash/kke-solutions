@@ -2,10 +2,10 @@
 ## Introduction
 This is, by far, one of the longest tasks that I have completed so far. Given the sheer number of steps involved, it took me around 25 minutes to complete all the steps, thereby forefeiting my bonus points. I don't regret though.
 
-The task involves the following key steps:
-* Task is to first create a Jenkins build job that pulls files from a GIT repo and pushes to a directory on the storage server. To achieve this, you need to install [Gitea](https://plugins.jenkins.io/gitea/) and [Publish over SSH](https://plugins.jenkins.io/publish-over-ssh/) plugins in Jenkins
-* Task expects that when a file is committed to the GIT repo, the above build is automatically trigger. This requires enabling a [Webhook](https://en.wikipedia.org/wiki/Webhook) on the Build job and setting up this Webhook on the Gitea UI. You need to also install [Build Authorization Token Root](https://plugins.jenkins.io/build-token-root/) plugin in Jenkins to allow Gitea to trigger the Jenkins build without authenticating
-* Finally, the task expects you to create another Jenkins build job that can run SSH commands on the appservers and restart the 'httpd' service. For this, you need to install [SSH](https://plugins.jenkins.io/ssh) plugin and also enable 'password-less sudo' on all the appservers. Most importantly, this build job should get triggered automatically by the first build job.
+The task involves the following 3 key steps:
+1. Create a Jenkins build job that pulls _all_ files from a GIT repo and pushes to a directory on the storage server. To achieve this, you need to install [Gitea](https://plugins.jenkins.io/gitea/) and [Publish over SSH](https://plugins.jenkins.io/publish-over-ssh/) plugins in Jenkins
+2. Task expects that when a file is committed to the GIT repo, the above build is automatically trigger. This requires enabling a [Webhook](https://en.wikipedia.org/wiki/Webhook) on the Build job and setting up this Webhook on the Gitea UI. You need to also install [Build Authorization Token Root](https://plugins.jenkins.io/build-token-root/) plugin in Jenkins to allow Gitea to trigger the Jenkins build without authenticating
+3. Finally, the task expects you to create another Jenkins build job that can run SSH commands on the appservers and restart the 'httpd' service. For this, you need to install [SSH](https://plugins.jenkins.io/ssh) plugin and also enable 'password-less sudo' on all the appservers. Most importantly, this build job should get triggered automatically by the first build job.
 
 Happy learning and good luck with your attempt!
 
@@ -99,6 +99,7 @@ e.g. `https://xxxx.katacoda.com/buildByToken/build?job=nautilus-app-deployment&t
 ```
 Source files: **/*
 ```
+Note: `**/*` file pattern ensures that the build job pulls all files from the repo and pushes them to the storage server and not just the index.html
 * Click `Save`
 * Click the newly created Job and click `Build Now`
 * You should see a new build getting triggered and complete successfully.
@@ -161,7 +162,7 @@ git push origin master
 * Check once again in Jenkins UI. You should see a `nautilus-app-deployment` build triggered followed by a `manage-services` build triggered
 * Check the `Console Output` of both jobs to make sure the build steps were completed successfully without any failures
 * You should also now see the new `bobby.html` under `/data` directory of the storage server
-* Back on the LB URL, check if you can see the bobby.html page: `<LB URL>/bobby.hml`
+* Back on the LB URL, check if you can see the bobby.html page: `<LB URL>/bobby.html`
 
 ---
 For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)
