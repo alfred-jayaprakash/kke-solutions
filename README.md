@@ -11,6 +11,7 @@ This GIT project contains my own solutions to the tasks in Kodekloud Engineer. A
       * [Docker tasks](./docker/README.md)
       * [Ansible tasks](./ansible/README.md)
       * [Puppet tasks](./puppet/README.md)
+      * [Jenkins tasks](./jenkins/README.md)
 * **It's okay to "Try Later"**
   * If you think you took too much time to perform the task or you screwed up the environment, click `Try Later` and come back to the task again. Most importantly, read through the question again as the question values will change with each reload of the question.
 * **Go for Bonus points**
