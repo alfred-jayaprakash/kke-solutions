@@ -4,7 +4,7 @@ The task expects you to copy log files from one of the appserver to a location o
 
 To accomplish this, you need to setup password-less sudo and password-less SSH (using SSH keys) first. Then you need to setup a Scheduled Build Job that copies files from appserver to the '/tmp' folder on the storage server. Then move the files from '/tmp' folder to the actual location.
 
-For setting up the Scheduled Build job, you need to setup a crontab expression. You can use (Crontab Guru)[https://crontab.guru/] to build the expression.
+For setting up the Scheduled Build job, you need to setup a crontab expression. You can use [Crontab Guru](https://crontab.guru/) to build the expression.
 
 ## Solution
 ### Step 1: Enable password-less sudo and password-less SSH
