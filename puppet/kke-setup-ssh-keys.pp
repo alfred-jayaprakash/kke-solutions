@@ -2,9 +2,9 @@
 # Step 1: Save this file under /etc/puppetlabs/code/environments/production/manifests 
 #         as a file with the name specified in the question e.g. news.pp
 # Step 2: Copy the public key value from the public key location specified in the question and 
-#         paste in the below variable
-# Step 3: Verify: Finally, SSH to each hosts. You should be able to SSH without entering
-#         password
+#         paste in the below variable. Don't literally copy the file contents in to the variable
+# Step 3: Verify: Finally, SSH to each hosts and run `sudo puppet agent -tv` . After this, 
+#         you should be able to SSH to each host from Jump Host without entering password
 #
 # For tips on getting better at Puppet tasks, check out the README.md
 # in this folder
