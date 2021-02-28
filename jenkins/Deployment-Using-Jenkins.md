@@ -30,7 +30,7 @@ curl http://stapp03:3001/
 * Select the plugin and click `Download now and install after restart`
 * In the following screen, click checkbox `Restart Jenkins when installation is complete and no jobs running`. Wait for the screen to become standstill.
 * You can try to refresh your browser after a few secs.
-* Repeat the above steps and install `Build Authorization Token Root`, `SSH`, `Publish over SSH` plugins also
+* Repeat the above steps and install `Build Authorization Token Root`, `Publish over SSH` plugins also
 * Note that you can seach for multiple plugins, select them and finally click `Download now and install after restart`. When you select one and search for the next one, the previous one disappears. But it is still selected behind-the-scenes and gets installed along when you click `Download now and install after restart`
 
 ### Step 3: Setup Credentials for GIT and SSH user
