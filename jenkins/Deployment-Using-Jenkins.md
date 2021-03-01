@@ -33,7 +33,7 @@ curl http://stapp03:3001/
 * Repeat the above steps and install `Build Authorization Token Root`, `Publish over SSH` plugins also
 * Note that you can seach for multiple plugins, select them and finally click `Download now and install after restart`. When you select one and search for the next one, the previous one disappears. But it is still selected behind-the-scenes and gets installed along when you click `Download now and install after restart`
 
-### Step 3: Setup Credentials for GIT and SSH user
+### Step 3: Setup Credentials for GIT user
 * Under `Jenkins > Manage Jenkins > Manage Credentials`, click `Global` under `Stores scoped to Jenkins` and `Add Credentials`
 * Leave kind as `Username with Password` and Scope as `Global (..)`
 * Setup GIT credentials for Sarah:
@@ -84,7 +84,7 @@ e.g. `https://xxxx.katacoda.com/buildByToken/build?job=nautilus-app-deployment&t
 Source files: **/*
 ```
 Note: `**/*` file pattern ensures that the build job pulls all files from the repo and pushes them to the storage server and not just the index.html
-
+* Click `save`
 * Click the newly created Job and click `Build Now`
 * You should see a new build getting triggered and complete successfully.
 * Check the `Console Output` to see that `SSH: Transferred 1 file(s)`
