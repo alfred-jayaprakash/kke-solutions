@@ -1,17 +1,17 @@
 # Jenkins Single Stage Pipeline
 ## Solution
-### Step 1: Install Gitea and Publish over SSH Plugins in Jenkins
+### Step 1: Add a new Slave Node
 * `Select port to view on Host 1` and connect to port `8081`. Login using the Jenkins admin user and password given in the question
 * Under  `Jenkins > Manage Jenkins >  Manage Nodes and Clouds > New Node`
 * Provide following values
 ```
 Node Name: Storage Server
-Permanent Agent
+(Permanent Agent)
+Remote root directory: /home/natasha
 Labels: ststor01
-Remote Work Dir: /home/natasha
 ```
 * Click `Save`
-* Ignore any warning icon seen next to the newly created Node in the list of nodes
+* TODO: Need to add the steps to setup Slave node
 
 ### Step 2: Install the required plugins in Jenkins
 * Under  `Jenkins > Manage Jenkins >  Manage Plugins` click `Available` and search for `Pipeline` plugin.
@@ -20,7 +20,7 @@ Remote Work Dir: /home/natasha
 * You can try to refresh your browser after a few secs.
 * Repeat the above steps and install `GIT`, `SSH Pipeline Steps` plugins also
 
-### Step 3: Setup Credentials for GIT and SSH user
+### Step 3: Setup Credentials for GIT user
 * Under `Jenkins > Manage Jenkins > Manage Credentials`, click `Global` under `Stores scoped to Jenkins` and `Add Credentials`
 * Leave kind as `Username with Password` and Scope as `Global (..)`
 * Setup GIT credentials for Sarah:
@@ -29,17 +29,11 @@ Username: sarah
 Password: Sarah_pass123
 ID: GIT_CREDS
 ```
-* Same way, setup SSH credentials for natasha:
-```
-Username: natasha
-Password: Bl@kW
-ID: SSH_CREDS
-```
 
 ### Step 4: Create a Pipeline Job
-* Click `New item` and in the following screen:
+* Click `New item` and in the following screen create a job as per question:
 ```
-Name: datacenter-webapp-job (Select 'Pipeline') and click Ok
+Name: datacenter-webapp-job (Select 'Pipeline' - Don't select 'Multibranch pipeline') and click Ok
 ```
 * Under `Pipeline`, make sure definition is `Pipeline script`
 * In the `Script` text area provide the following:
@@ -53,9 +47,7 @@ remote.allowAnyHosts = true
             
 pipeline {
     agent any
-    environment {
-        SSH_CREDS = credentials('SSH_CREDS')
-    }        
+     
     stages {
         stage('Deploy') {
             steps {
@@ -66,6 +58,7 @@ pipeline {
         }
     }
 }
+
 ```
 * Click `Save`
 * Click the newly created Pipeline Job and click `Build Now`
@@ -92,6 +85,6 @@ git push origin master
 * Check the `Console Output` to check whether files were pulled from GIT repo and transferred to `ststor01` sucessfully
 * Access LB URL: `Select port to view on Host 1` and connect to port `80`
   * You should see index page with your changes
-  
+
 ---
 For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)
