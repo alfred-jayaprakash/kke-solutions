@@ -54,10 +54,10 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh '$content=`cat index.html`'
-                sh '((curl http://stapp01:3001 | grep ${content}) || true)'
-                sh '((curl http://stapp02:3001 | grep ${content}) || true)'
-                sh '((curl http://stapp03:3001 | grep ${content}) || true)'
+                sh 'content=`cat index.html`'
+                sh '((curl http://stapp01:3001 | grep "$content") && true)'
+                sh '((curl http://stapp02:3001 | grep "$content") && true)'
+                sh '((curl http://stapp03:3001 | grep "$content") && true)'
             }
         }
     }
