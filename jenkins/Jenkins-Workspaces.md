@@ -37,7 +37,7 @@ Passphrase/Password: Bl@kW
 
 ### Step 5: Verify Permissions for /data directory
 * SSH to `ststor01` using `natasha` 
-* Grant full permissions to `/data` folder: `sudo chmod 777 /data`
+* Grant full permissions to `/data` folder: `sudo chmod 777 /data` if it's not already granted
 
 ### Step 6: Create a Parameterized Build
 * `Select port to view on Host 1` and connect to port `8081`. Login using the Jenkins admin user and password given in the question
@@ -81,8 +81,9 @@ Source files: **/*
 * Choose any of the values from the drop-down e.g. `version1`
 * You should see a new build getting triggered and complete successfully.
 * Check the `Console Output` to see that `SSH: Transferred 1 file(s)`
-* Go to back to the terminal and check that you see a `index.html` under `/data` folder of the storage server
 * Access LB URL: `Select port to view on Host 1` and connect to port `80`
-  * You should see index page with your changes
+  * You should `This is app version 1` displayed in the browser
+* Now repeat the builds with Branch parameter chosen as `version2` and `version3`. You should see the data `This is app version 2` and `This is app version 3` displayed in the browser respectively.
+
 ---
 For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)
