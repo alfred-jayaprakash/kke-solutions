@@ -55,6 +55,9 @@ Name: datacenter-webapp-job (Select 'Pipeline' - Don't select 'Multibranch pipel
 * Under `Pipeline`, make sure definition is `Pipeline script`
 * In the `Script` text area provide the following:
 ```groovy
+//
+// Setup up the Remote connection for SSH Build Pipeline step
+//
 def remote = [:]
 remote.name = 'ststor01'
 remote.host = 'ststor01'
@@ -63,13 +66,20 @@ remote.password = 'Bl@kW'
 remote.allowAnyHosts = true   
             
 pipeline {
+    // Run on agent with label 'ststor01'
     agent { label 'ststor01' }
-     
+
+    // Pipeline stages
     stages {
+        // Deploy stage 
         stage('Deploy') {
             steps {
+                // Connect to GIT and download the repo code
+                // Use the Jenkins Credentials by ID: GIT_CREDS
                 git credentialsId: 'GIT_CREDS', url: 'http://git.stratos.xfusioncorp.com/sarah/web_app.git'
+                // Transfer all the files we downloaded to /tmp of ststor01
                 sshPut remote: remote, from: '.', into: '/tmp'
+                // Finally move all the files from /tmp to /data on ststor01
                 sshCommand remote: remote, command: "mv -f /tmp/${JOB_NAME}/* /data"
             }
         }
