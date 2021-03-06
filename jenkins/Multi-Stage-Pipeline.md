@@ -7,7 +7,7 @@ Following up on the [Single stage pipeline](./Single-Stage-Pipeline.md), this ta
 ## Solution
 ### Step 1: Install the required plugins in Jenkins
 * `Select port to view on Host 1` and connect to port `8081`. Login using the Jenkins admin user and password given in the question
-* Under  `Jenkins > Manage Jenkins >  Manage Plugins` click `Available` and search for `Pipeline` plugin.
+* Under  `Jenkins > Manage Jenkins >  Manage Plugins` click `Available` and search for `GIT` plugin.
 * Select the `GIT` plugin and click `Download now and install after restart`
 * In the following screen, click checkbox `Restart Jenkins when installation is complete and no jobs running`. Wait for the screen to become standstill.
 * You can try to refresh your browser after a few secs.
@@ -30,7 +30,7 @@ ID: GIT_CREDS
 Name: datacenter-webapp-job (Select 'Pipeline' - Don't select 'Multibranch pipeline') and click Ok
 ```
 * Under `Pipeline`, make sure definition is `Pipeline script`
-* In the `Script` text area provide the following (change the ports under `Test` stage according to the question):
+* In the `Script` text area provide the following (change the `git url` under `Deploy` stage and `appserver ports` under `Test` stage according to the question):
 ```groovy
 def remote = [:]
 remote.name = 'ststor01'
@@ -43,21 +43,33 @@ pipeline {
     agent { label 'ststor01' }
      
     stages {
+        // Deploy stage
         stage('Deploy') {
             steps {
                 echo 'Deploying ...'
-                git credentialsId: 'GIT_CREDS', url: 'http://git.stratos.xfusioncorp.com/sarah/web_app.git'
+                // Connect to GIT and download the repo code
+                git credentialsId: 'GIT_CREDS', url: 'http://git.stratos.xfusioncorp.com/sarah/web.git'
+                // Put all the files we downloaded to /tmp of ststor01
                 sshPut remote: remote, from: '.', into: '/tmp'
+                // Finally move all the files from /tmp to /data on ststor01
                 sshCommand remote: remote, command: "mv -f /tmp/${JOB_NAME}/* /data"
             }
         }
 
+        // Test stage
         stage('Test') {
+            environment {
+                // Store the index.html content we received from GIT in a variable
+                INDEX_CONTENT = sh(script: 'cat index.html', , returnStdout: true).trim()
+            }
+           
             steps {
-                sh 'content=`cat index.html`'
-                sh '((curl http://stapp01:3001 | grep "$content") && true)'
-                sh '((curl http://stapp02:3001 | grep "$content") && true)'
-                sh '((curl http://stapp03:3001 | grep "$content") && true)'
+                sh 'echo "Content from GIT: $INDEX_CONTENT"'
+                // Now test that the content from default page from HTTPD on each 
+                // of the appservers is same as the index.html content from GIT
+                sh '((curl http://stapp01:8080/ | grep -F "$INDEX_CONTENT") && true)'
+                sh '((curl http://stapp02:8080/ | grep -F "$INDEX_CONTENT") && true)'
+                sh '((curl http://stapp03:8080/ | grep -F "$INDEX_CONTENT") && true)'
             }
         }
     }
