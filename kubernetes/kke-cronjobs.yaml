@@ -1,0 +1,28 @@
+#
+# Step 1: kubectl create -f <this file>
+# Step 2: 'kubectl get cronjob' : Check the cronjob is created
+# Step 2: 'kubectl get pod': Note down the pod name i.e. datacenter-xxxx
+# Step 3: Verify: `kubectl logs datacenter-xxxx`
+#     You should see the echo message below printed
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: datacenter
+spec:
+  schedule: "*/9 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: cron-datacenter
+              image: httpd:latest
+              command:
+                - /bin/sh
+                - -c
+                - echo Welcome to xfusioncorp
+          restartPolicy: OnFailure
