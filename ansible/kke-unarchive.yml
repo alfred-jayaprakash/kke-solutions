@@ -1,0 +1,21 @@
+#
+# Step 1: Simply save this file as playbook.yml
+# Step 2: ansible-playbook -i inventory playbook.yml
+# Step 3: Verify: Check that the extracted directory exists in the target location
+#         with correct owner/group
+#         ansible all -a "ls -ltr /opt/devops/" -i inventory
+#
+# For tips on getting better at Ansible tasks, check out the README.md
+# in this folder
+#
+- name: Extract archive
+  hosts: stapp01, stapp02, stapp03
+  become: yes
+  tasks:
+    - name: Extract the archive and set the owner/permissions
+      unarchive:
+        src: /usr/src/devops/nautilus.zip
+        dest: /opt/devops
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0755"
