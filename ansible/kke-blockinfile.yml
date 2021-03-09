@@ -16,6 +16,10 @@
       package:
         name: httpd
         state: present
+    - name: Start service httpd, if not started
+      service:
+        name: httpd
+        state: started
     - name: Add content block in index.html and set permissions
       blockinfile:
         path: /var/www/html/index.html
