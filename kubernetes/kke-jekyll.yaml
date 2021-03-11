@@ -1,11 +1,11 @@
 #
 # Step 1: kubectl create namespace jekyll-namespace-datacenter
-# Step 1: kubectl create -f <this file>
-# Step 2: Wait for the jekyll pod to be in 'Running' state
-# Step 3: Verify: kubectl exec jekyll-pod-datacenter --namespace jekyll-namespace-datacenter
+# Step 2: kubectl create -f <this file>
+# Step 3: Wait for the jekyll pod to be in 'Running' state
+# Step 4: Verify: kubectl exec jekyll-pod-datacenter --namespace jekyll-namespace-datacenter
 #         -- curl http://localhost:4000/
 #         You should see a valid HTML content being returned
-# Step 4: Verify: Open Jekyll app on browser by clicking 'Open Port on Host 1'
+# Step 5: Verify: Open Jekyll app on browser by clicking 'Open Port on Host 1'
 #         and port as NodePort below. You should see the page without any errors
 #
 # For tips on getting better at Kubernetes tasks, check out the README.md
