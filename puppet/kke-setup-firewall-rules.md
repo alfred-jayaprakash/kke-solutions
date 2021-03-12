@@ -4,15 +4,15 @@
 * Create the required inventory file with the name given as per the question i.e.`/etc/puppetlabs/code/environments/production/manifests/code.pp` and content as below.
 ```ruby
 node 'stapp01.stratos.xfusioncorp.com' {
-  include firewall_node1;
+  include firewall_node1
 }
 
 node 'stapp02.stratos.xfusioncorp.com' {
-  include firewall_node2;
+  include firewall_node2
 }
 
 node 'stapp03.stratos.xfusioncorp.com' {
-  include firewall_node3;
+  include firewall_node3
 }
 ```
 * Create the required inventory file with the name given as per the question i.e.`/etc/puppetlabs/code/environments/production/manifests/demo.pp` and content as below [Change the values of ports below according to the question]
@@ -47,9 +47,9 @@ class firewall_node3 {
 }
 ```
 * Run the puppet verifications steps:
-  * `puppet parser validate code.pp` and `puppet parser validate demo.pp`
-  * SSH to each hosts and run `sudo puppet agent -tv --noop` first to dry-run the code
-  * Finally run `sudo puppet agent -tv` in the hosts to implement the firewall changes
+  * On Jump host: `puppet parser validate code.pp` and `puppet parser validate demo.pp`
+  * SSH to one of the appservers hosts and run `sudo puppet agent -tv --noop` first to dry-run the code. Check there are no issues.
+  * Finally run `sudo puppet agent -tv` in each of the appserver hosts to implement the firewall changes
 
 ## Verification
 * Run `curl http://<host>:<port>/` from Jump Host to the speific ports on each appserver (as per the question) to test connectivity e.g. `curl http://stapp01:3000/`
