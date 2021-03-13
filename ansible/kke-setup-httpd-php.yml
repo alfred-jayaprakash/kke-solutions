@@ -1,0 +1,40 @@
+#
+# Step 1: Simply save this file as httpd.yml in the required folder
+# Step 2: Change the values of appserver under hosts as per question
+# Step 3: Run `ansible-playbook -i inventory httpd.yml`
+# Step 4: Verify: `curl http://stapp02:8080/phpinfo.php`
+#         You should see valid HTML content returned
+#
+# For tips on getting better at Ansible tasks, check out the README.md
+# in this folder
+#
+- name: Setup HTTPD and PHP
+  hosts: stapp02
+  become: yes
+  tasks:
+    - name: Install httpd and php
+      package:
+        name:
+          - httpd
+          - php
+        state: latest
+    - name: Replace default DocumentRoot in httpd.conf
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: DocumentRoot \"\/var\/www\/html\"
+        replace: DocumentRoot "/var/www/html/myroot"
+    - name: Create the new DocumentRoot directory if it does not exist
+      file:
+        path: /var/www/html/myroot
+        state: directory
+        owner: apache
+        group: apache
+    - name: Use Jinja2 template to generate phpinfo.php
+      template:
+        src: /home/thor/ansible/playbooks/templates/phpinfo.php.j2
+        dest: /var/www/html/myroot/phpinfo.php
+    - name: Start and enable service httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
