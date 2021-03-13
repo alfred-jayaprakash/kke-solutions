@@ -1,0 +1,58 @@
+#
+# Step 1: kubectl create ns grafana-monitoring-datacenter
+# Step 2: kubectl create -f <this file>
+# Step 3: Make sure all the pods are in running state
+# Step 4: Verify: Open Grafana app on browser by clicking 'Open Port on Host 1'
+#         and port as the nodePort below.
+#         You should see the page loaded successfully
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-service-datacenter
+  namespace: grafana-monitoring-datacenter
+spec:
+  type: NodePort
+  selector:
+    app: grafana
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 32000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-deployment-datacenter
+  namespace: grafana-monitoring-datacenter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      volumes:
+        - name: grafana-storage
+          emptyDir: {}
+      containers:
+        - name: grafana-container-datacenter
+          image: grafana/grafana:latest
+          volumeMounts:
+            - name: grafana-storage
+              mountPath: /var/lib/grafana
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 3000
