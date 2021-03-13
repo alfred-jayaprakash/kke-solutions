@@ -8,11 +8,11 @@
 # For tips on getting better at Ansible tasks, check out the README.md
 # in this folder
 #
-- name: Setup HTTPD and PHP
+- name: Setup Httpd and PHP
   hosts: stapp02
   become: yes
   tasks:
-    - name: Install httpd and php
+    - name: Install latest version of httpd and php
       package:
         name:
           - httpd
@@ -33,6 +33,8 @@
       template:
         src: /home/thor/ansible/playbooks/templates/phpinfo.php.j2
         dest: /var/www/html/myroot/phpinfo.php
+        owner: apache
+        group: apache
     - name: Start and enable service httpd
       service:
         name: httpd
