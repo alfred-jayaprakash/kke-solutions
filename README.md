@@ -3,6 +3,10 @@
 ### Introduction
 This GIT project contains my own solutions to the tasks in Kodekloud Engineer. As a personal advise, please use the solutions only for your reference. It's best that you attempt the tasks yourself first by reading through the original documentation. This will immensely help you develop your skills. After all, that's the objective of Kodekloud Engineer isn't it?
 
+[Kodekloud](https://kodekloud.com) has great courses that covers almost all of the topics tested in Kodekloud Engineer. I strongly recommend signing up and enhancing your DevOps skills. Please note that I'm not affliated with Kodekloud in anyway.
+
+Good luck with your learning journey!
+
 ### General Tips
 * **Begin with the end in mind**
     * Always begin the task with an idea on how to verify the successful completion of the task. For verification guidance and other specific guidance on individual topics, follow the links below:
