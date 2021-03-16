@@ -1,0 +1,36 @@
+#
+# Step 1: kubectl create -f <this file>
+# Step 2: Make sure the pod is in Running state
+# Step 3: Verify: There's limited verification that can be performed on this task.
+#         It's just sufficient to ensure that the Pod is up and running.
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver
+  labels:
+    name: webserver
+spec:
+  volumes:
+    - name: shared-logs
+      emptyDir: {}
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - name: shared-logs
+          mountPath: /var/log/nginx
+    - name: sidecar-container
+      image: ubuntu:latest
+      command:
+        [
+          "/bin/bash",
+          "-c",
+          "while true; do cat /var/log/nginx/access.log /var/log/nginx/error.log; sleep 30; done",
+        ]
+      volumeMounts:
+        - name: shared-logs
+          mountPath: /var/log/nginx
