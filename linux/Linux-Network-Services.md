@@ -7,6 +7,14 @@ The task is actually simpler than it sounds. In this example, let's take that th
 * Simply kill the process (`sudo kill -9 <pid>`) and start httpd
 * Run `systemctl status httpd` to check that httpd service is in running
 
+## Update
+This task seems to have enabled `iptables` as well. So you need to add `iptables` rules to allow the required port as well. For enabling the port, you need to run the following commands (Replace port accordingly):
+```
+iptables -I INPUT 5 -p TCP --dport 8089 -j ACCEPT
+service iptables save
+iptables -nvL
+```
+
 ## Verification
 * Test connectivity again from Jump Host to all 3 appservers using curl i.e. `curl http://stapp01:8089/`. You should see the default index page HTML printed.
 
