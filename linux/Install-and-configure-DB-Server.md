@@ -36,6 +36,7 @@ MariaDB [(none)]>exit
 ```UNIX
 scp /home/thor/db.sql peter@stdb01:/tmp
 ```
+Note: If `scp` command is not recognized, you need to install `openssh-clients`. i.e. `sudo yum -y install openssh-clients`
 * Now login back to database host and load the database script as below
 ```UNIX
 mysql -u kodekloud_roy -p kodekloud_db5 < /tmp/db.sql
