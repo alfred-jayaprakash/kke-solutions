@@ -1,0 +1,32 @@
+#
+# Step 1: kubectl create -f <this file>
+# Step 2: Wait for the pods to be in running state. Note down a pod name.
+# Step 3: Verify: kubectl exec <podname> -- curl http://localhost:8080/
+#         You should see a valid HTML content being returned
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-replicationcontroller
+  labels:
+    app: nginx_app
+    type: front-end
+spec:
+  replicas: 3
+  selector:
+    app: nginx_app
+  template:
+    metadata:
+      name: nginx_pod
+      labels:
+        app: nginx_app
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80
