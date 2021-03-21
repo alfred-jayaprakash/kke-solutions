@@ -65,14 +65,14 @@ pipeline {
         // Test stage
         stage('Test') {
             environment {
-                // Store the index.html content we received from GIT in a variable
-                INDEX_CONTENT = sh(script: 'cat index.html', , returnStdout: true).trim()
+                // Update the below value as per the text given in question
+                INDEX_CONTENT = 'Welcome to xFusionCorp Industries'
             }
-           
+
             steps {
-                sh 'echo "Content from GIT: $INDEX_CONTENT"'
                 // Now test that the content from default page from HTTPD on each 
-                // of the appservers is same as the index.html content from GIT
+                // of the appservers is same as the index.html content required as
+                // per question
                 sh '((curl http://stapp01:8080/ | grep -F "$INDEX_CONTENT") && true)'
                 sh '((curl http://stapp02:8080/ | grep -F "$INDEX_CONTENT") && true)'
                 sh '((curl http://stapp03:8080/ | grep -F "$INDEX_CONTENT") && true)'
@@ -83,10 +83,6 @@ pipeline {
 ```
 TODO: Improve above code by not hardcoding the remote password
 * Click `Save`
-* Click the newly created Pipeline Job and click `Build Now`
-* You should see a new build getting triggered and completed successfully
-* Check the `Console Output` to check whether files were pulled from GIT repo and transferred to `ststor01` sucessfully. Also the test stage should report successful test.
-* Go to back to the terminal and check that you see a `index.html` under `/data` folder of the storage server
 
 ### Step 5: Commit changes to index.html
 * SSH to ststor01 using SSH user `sarah`
@@ -101,12 +97,38 @@ git add index.html
 git commit -m "updated"
 git push origin master
 ```
+
 ### Verification
-* Click the newly created Pipeline Job again and click `Build Now`
+* Click the newly created Pipeline Job and click `Build Now`
 * You should see a new build getting triggered and completed successfully
-* Check the `Console Output` to check whether files were pulled from GIT repo and transferred to `ststor01` sucessfully. Also the test stage should report successful test.
+* Check the `Console Output` to check whether files were pulled from GIT repo and transferred to `ststor01` sucessfully. Also the `Test` stage should report successful test.
 * Access LB URL: `Select port to view on Host 1` and connect to port `80`
   * You should see index page with your changes
+
+## Addendum
+While the `Test` stage here is specific to the question, in real world, a more robust solution would've been to check that the content from GIT is same as the content served from Apache servers. This would've been the best way to check that the `Deploy` stage was successful
+
+In other words, if deployment fails, the test stage fails regardless of the content of `index.html`.
+
+The following is a more robust version of the code, which however will get failed by KKE Verification process as the verification process is expecting the code to only work when the `index.html` content is `Welcome to xFusionCorp Industries`:
+```groovy
+// Test stage
+stage('Test') {
+    environment {
+        // Store the index.html content we received from GIT in a variable
+        INDEX_CONTENT = sh(script: 'cat index.html', , returnStdout: true).trim()
+    }
+    
+    steps {
+        sh 'echo "Content from GIT: $INDEX_CONTENT"'
+        // Now test that the content from default page from HTTPD on each 
+        // of the appservers is same as the index.html content from GIT
+        sh '((curl http://stapp01:8080/ | grep -F "$INDEX_CONTENT") && true)'
+        sh '((curl http://stapp02:8080/ | grep -F "$INDEX_CONTENT") && true)'
+        sh '((curl http://stapp03:8080/ | grep -F "$INDEX_CONTENT") && true)'
+    }
+}
+```
 
 ---
 For tips on getting better at KodeKloud Engineer Jenkins tasks, [click here](./README.md)
