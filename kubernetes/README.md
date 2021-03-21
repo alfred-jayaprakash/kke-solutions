@@ -19,9 +19,10 @@ advice here is to:
       * Examples:
         * `kubectl exec nginx-nautilus -- curl http://localhost:8080/`
         * `kubectl exec nginx-nautilus --namespace xfusion -- ls /opt/data`
-    * Shell - You can also get a shell to Kubernetes Pod like this. This is useful when you need to run multiple verification commands:
+    * Shell - You can also get a shell to Kubernetes Pod using the `-it` option (Interactive) and providing a shell. This is useful when you need to run multiple verification commands:
       * `kubectl exec -it nginx-nautilus -- /bin/bash`
-      * You can print all environment variables by running command `printenv` in the pod command shell
+      * You can print all environment variables by running command `printenv` in the pod command 
+      * In case the Pod has multiple container, then you need to specify the container name using the `--container` option. For example: `kubectl exec -it nginx-nautilus --container nginx-container-1 -- /bin/bash`
     * Logs - Useful for tasks that require you to print an output e.g. echo:
       * `kubectl logs <podname>`. For example, `kubectl logs my-pod` 
       
