@@ -1,15 +1,17 @@
 
 ## Install and configure SFTP
 ## Solution
-* SSH to the required host and add the user e.g. `sudo useradd javed` 
-* Set the password to the user as given in the question e.g. `sudo passwd javed`
-* Create the landing directory (`chroot` directory in the question) and given ownership to `root` user:
+* SSH to the required host and add the given user by running `sudo useradd javed` (In this example `javed` is the user to be created)
+* Set the password to the user as given in the question by running: `sudo passwd javed`
+* Create the landing directory (`chroot` directory in the question). It's important that this directory and it's parent are owned by `root` and set permissions `0755`. In this example, `/var/www/webdata` is the landing directory mentioned in the question.
 ```
 sudo mkdir -p /var/www/webdata
 sudo chown -R root:root /var/www
 sudo chmod -R 755 /var/www
 ```
-* Now modify the`/etc/ssh/sshdconfig` as follows to force SFTP-only for the newly created (Make sure to comment the existing `Subsystem  sftp  /usr/libexec/openssh/sftp-server` line):
+* Now modify the`/etc/ssh/sshdconfig` as follows to force SFTP-only for the newly created user. 
+  * Make sure to comment the existing `Subsystem  sftp  /usr/libexec/openssh/sftp-server` line. 
+  * Change the values of `User` and `ChrootDirectory` below as per question (In the below example `javed` and `/var/www/webdata` is configured:
  ```
  Subsystem sftp internal-sftp 
  Match User javed 
@@ -26,7 +28,7 @@ sudo chmod -R 755 /var/www
  
 ## Verification
 * From the same host, try to do a SSH using the newly created user. e.g. `ssh javed@localhost`. It should fail with an error `This service allows sftp connections only`.
-* Try to do a SFTP using the newly created user. e.g. `sftp javed@localhost`. It should succeed.
+* Try to do a SFTP using the newly created user. e.g. `sftp javed@localhost`. Connection should succeed.
 
 ---
 For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)
