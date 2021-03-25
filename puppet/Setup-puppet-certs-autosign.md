@@ -58,4 +58,3 @@ Signed Certificates:
 
 ---
 For general tips on getting better at KodeKloud Engineer Puppet tasks, [click here](./README.md)
-
