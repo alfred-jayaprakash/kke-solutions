@@ -1,7 +1,7 @@
 # Install and configure DB Server
 ## Solution
 ### Step 1 - MariaDB installation and configuration
-* Login to Database host (stdb01)
+* SSH to Database host (stdb01)
 * Install and enable MariaDB server
 ```UNIX
 sudo yum install httpd mariadb mariadb-server -y
@@ -25,7 +25,7 @@ Reload privilege tables now? [Y/n] Y
 ```UNIX
 mysql -u root -p
 ```
-Once you have logged in, then run the below SQL commands:
+Once you have logged in, then run the below SQL commands to create database, create user, set the password and grant privileges (In this example `kodekloud` is the password set for the user). Make sure to change the below values as per the question:
 ```SQL
 MariaDB [(none)]>CREATE DATABASE kodekloud_db5;
 MariaDB [(none)]>GRANT ALL PRIVILEGES on kodekloud_db5.* to 'kodekloud_roy'@'%' identified by 'kodekloud';
@@ -42,14 +42,14 @@ Note: If `scp` command is not recognized, you need to install `openssh-clients`.
 mysql -u kodekloud_roy -p kodekloud_db5 < /tmp/db.sql
 ```
 #### Verify MariaDB setup
-* Use mysqlshow to verify that the account you created works as expected, especially with host as stdb01. You should see all the WordPress tables listed i.e. wp...
+* Use `mysqlshow` to verify that the account you created works as expected, especially with host as stdb01. You should see all the WordPress tables listed i.e. wp...
 ```UNIX
 mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5
 ```
 In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 -p kodekloud_db5`
 
 ### Step 2 - WordPress configuration
-* Login to storage server (ststor01)
+* SSH to storage server (ststor01)
 * Edit `wp_config.php` from the location specified in the question and set the DB details
 ```
 define('DB_NAME', 'kodekloud_db5');
