@@ -1,13 +1,15 @@
 #
 # Step 1: kubectl create namespace fieldref-namespace
-# Step 2: kubectl create -f <this file>
-# Step 3: Make sure the pod is in Running state
-# Step 4: Verify: `kubectl logs envars-fieldref --namespace fieldref-namespace`
-#     You should see the values of environment variables printed by the Pod
+# Step 2: Make sure to change pod/container names, image, cmd args as per question
+# Step 3: kubectl create -f <this file>
+# Step 4: Make sure the pod is in Running state
 # Step 5: Verify: Get shell to the Pod
-#    `kubectl exec -it envars-fieldref --namespace fieldref-namespace -- /bin/bash`
+#    `kubectl exec -it envars-fieldref -n fieldref-namespace -- /bin/bash`
 #     in the following prompt run: `printenv`
-#     You should see all the environment variables printed
+#     You should see all the environment variables printed. Note down
+#     the values of the 5 env variables below
+# Step 6: Verify: `kubectl logs envars-fieldref -n fieldref-namespace`
+#     You should see the values of environment variables printed by the Pod
 #
 # For tips on getting better at Kubernetes tasks, check out the README.md
 # in this folder
@@ -21,7 +23,7 @@ spec:
   restartPolicy: Never
   containers:
     - name: fieldref-container
-      image: httpd:latest
+      image: nginx:latest
       command: ["sh", "-c"]
       args:
         - while true; do
