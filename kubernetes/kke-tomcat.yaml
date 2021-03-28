@@ -1,0 +1,47 @@
+#
+# Step 1: kubectl create ns tomcat-namespace-nautilus
+# Step 2: kubectl create -f <this file>
+# Step 3: Make sure the pod is in Running state. Note down the name i.e. tomcat-xxxxxx
+# Step 4: Verify: `kubectl exec tomcat-xxxx -n tomcat-namespace-nautilus -- curl http://localhost:8080`
+#         You should see some sample HTML page
+# Step 5: Verify: Click 'Select port to view on Host 1' and provide the Node Port below.
+#         You should see the sample HTML page.
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-service-nautilus
+  namespace: tomcat-namespace-nautilus
+spec:
+  type: NodePort
+  selector:
+    app: tomcat
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 32227
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment-nautilus
+  namespace: tomcat-namespace-nautilus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec:
+      containers:
+        - name: tomcat-container-nautilus
+          image: gcr.io/kodekloud/centos-ssh-enabled:tomcat
+          ports:
+            - containerPort: 8080
