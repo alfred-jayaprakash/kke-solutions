@@ -28,7 +28,7 @@ iptables -nvL
 yum install iptables-services -y
 systemctl start iptables
 systemctl enable iptables
-iptables -R INPUT 5 -s ! 172.16.238.14 -p TCP --dport 5000 -j DROP
+iptables -R INPUT 5 ! -s 172.16.238.14 -p TCP --dport 5000 -j DROP
 service iptables save
 systemctl status iptables
 iptables -nvL
