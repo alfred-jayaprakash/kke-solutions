@@ -14,7 +14,7 @@ yum install firewalld -y
 systemctl start firewalld
 systemctl enable firewalld
 firewall-cmd --zone=public --permanent --add-port=8888/tcp
-firewall-cmd --zone=public --permanent --add-rich-rule='rule family=ipv4 source address=172.16.238.14 port=9999 protocol=tcp accept'
+firewall-cmd --zone=public --permanent --add-rich-rule='rule family=ipv4 source address=172.16.238.14 port port=9999 protocol=tcp accept'
 firewall-cmd --reload
 firewall-cmd --list-all --zone=public
  ```  
