@@ -1,14 +1,14 @@
 #
-# Step 1: kubectl create -f <this file>
-# Step 2: Wait for the pod to be in running state
-# Step 3: Get a shell to the first container in the pod:
-#         kubectl exec volume-share-devops --container volume-container-devops-1 -- /bin/bash
-# Step 4: In the resulting prompt, create a text file as per the question:
-#         echo "Welcome to xFusionCorp Industries!" > /tmp/ecommerce/ecommerce.txt
-# Step 5: Verify: Check that you are able to see this file in the second container
+# Step 1: Change the values of resource names, images and mountPaths as per question
+# Step 2: kubectl create -f <this file>
+# Step 3: Wait for the pod to be in running state
+# Step 4: Get a shell to the first container in the pod:
+#         kubectl exec -it volume-share-devops -c volume-container-devops-1 -- /bin/bash
+# Step 5: In the resulting prompt, create a text file as per the question:
+#         echo "Welcome to xFusionCorp Industries!" > /tmp/media/media.txt
+# Step 6: Verify: Check that you are able to see this file in the second container
 #         under corresponding volume mount path as they use shared volumes:
-#         kubectl exec volume-share-devops --container volume-container-devops-2 --
-#         cat /tmp/apps/ecommerce.txt
+#         kubectl exec volume-share-devops -c volume-container-devops-2 -- ls /tmp/games/
 #
 # For tips on getting better at Kubernetes tasks, check out the README.md
 # in this folder
@@ -25,14 +25,14 @@ spec:
       emptyDir: {}
   containers:
     - name: volume-container-devops-1
-      image: centos:latest
+      image: fedora:latest
       command: ["/bin/bash", "-c", "sleep 10000"]
       volumeMounts:
         - name: volume-share
-          mountPath: /tmp/ecommerce
+          mountPath: /tmp/media
     - name: volume-container-devops-2
-      image: centos:latest
+      image: fedora:latest
       command: ["/bin/bash", "-c", "sleep 10000"]
       volumeMounts:
         - name: volume-share
-          mountPath: /tmp/apps
+          mountPath: /tmp/games
