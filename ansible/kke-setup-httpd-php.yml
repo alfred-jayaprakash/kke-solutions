@@ -1,6 +1,6 @@
 #
 # Step 1: Simply save this file as httpd.yml in the required folder
-# Step 2: Change the values of appserver under hosts as per question
+# Step 2: Change the values of appserver and paths as per question
 # Step 3: Run `ansible-playbook -i inventory httpd.yml`
 # Step 4: Verify: `curl http://stapp02:8080/phpinfo.php`
 #         You should see valid HTML content returned
@@ -31,7 +31,7 @@
         group: apache
     - name: Use Jinja2 template to generate phpinfo.php
       template:
-        src: /home/thor/ansible/playbooks/templates/phpinfo.php.j2
+        src: /home/thor/playbooks/templates/phpinfo.php.j2
         dest: /var/www/html/myroot/phpinfo.php
         owner: apache
         group: apache
