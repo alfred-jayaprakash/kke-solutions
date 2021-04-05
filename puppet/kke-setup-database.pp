@@ -5,7 +5,7 @@
 # Step 3: Verify: Finally, SSH to stdb01 and run `sudo puppet agent -tv` 
 #         Run `sudo systemctl status mariadb` to check the service is running
 # Step 4: Verify: In stdb01, try connecting to the database using the new user
-#         mysql -u kodekloud_rin -p kodekloud_db1 -h localhost
+#         mysql -u kodekloud_cap -p kodekloud_db7 -h localhost
 #
 # For tips on getting better at Puppet tasks, check out the README.md
 # in this folder
@@ -20,9 +20,9 @@ class mysql_database {
         enable    => true,
     }    
 
-    mysql::db { 'kodekloud_db1':
-      user     => 'kodekloud_rin',
-      password => 'BruCStnMT5',
+    mysql::db { 'kodekloud_db7':
+      user     => 'kodekloud_cap',
+      password => '8FmzjvFU6S',
       host     => 'localhost',
       grant    => ['ALL'],
     }
