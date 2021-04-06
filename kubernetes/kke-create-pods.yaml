@@ -1,0 +1,20 @@
+#
+# Step 1: Change the pod/container names and images as per question
+# Step 2: kubectl create -f <this file>
+# Step 3: Make sure the pod is in Running state
+# Step 4: Verify: kubectl exec pod-nginx -- curl http://localhost
+#         You should see the default Nginx HTML page returned
+#
+# For tips on getting better at Kubernetes tasks, check out the README.md
+# in this folder
+#
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-nginx
+  labels:
+    app: nginx_app
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
