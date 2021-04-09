@@ -1,11 +1,12 @@
 # GIT Setup from Scratch
 ## Introduction
 The task involves the following steps:
-* Create a bare GIT repo and setting up an update hook that prevents direct pushes to master
-* Clone this repo
-* Create a new branch
-* Commit a file in to this local branch and push to remote
-* Lastly, attempt to push the local master to remote repo
+1. Create a bare GIT repo
+2. setting up an update hook that prevents direct pushes to master
+3. Clone this repo in to another directory
+4. Create a new branch and switch to this branch
+5. Commit a file in to this new local branch and push the change to remote
+6. Lastly, create a new local `master` branch and try to push the local master to remote repo
 
 ## Solution
 * SSH to the required server i.e. `ssh natasha@ststor01`
