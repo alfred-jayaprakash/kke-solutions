@@ -2,18 +2,20 @@
 ## Introduction
 The task involves the following steps:
 * Create a bare GIT repo and setting up an update hook that prevents direct pushes to master
-* Clone this repo and create a new branch
-* Commit a file in to this branch and push to remote
-* Lastly, attempt to push the master to remote repo
+* Clone this repo
+* Create a new branch
+* Commit a file in to this local branch and push to remote
+* Lastly, attempt to push the local master to remote repo
 
 ## Solution
+* SSH to the required server i.e. `ssh natasha@ststor01`
 * Switch to root user: `sudo su`
 * Install GIT: `yum install -y git`
 * Setup GIT user and email globally:
 ```unix
 git config --global --add user.name natasha
 git config --global --add user.email natasha@stratos.xfusioncorp.com
-```unix
+```
 * Create a bare repository as per the question: `git init --bare /opt/apps.git`
 * Change to the repo directory `/opt/apps.git` and copy the `/tmp/update` hook to `hooks` directory under `/opt/apps.git`
 ```unix
@@ -36,10 +38,13 @@ git push origin xfusioncorp_apps
 ```
 
 ## Verification
-* Now switch to the new branch master and attempt a push to origin. Your push should fail:
+* Now switch to the new local branch, master, and attempt a push to origin. Your push should fail:
 ```unix
 git checkout -b master
 git push origin master
+```
+The error you see will be something similar to this:
+```
 remote: Manual pushing to this repo's master branch is restricted
 remote: error: hook declined to update refs/heads/master
 To /opt/apps.git
