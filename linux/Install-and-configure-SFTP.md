@@ -1,4 +1,3 @@
-
 ## Install and configure SFTP
 ## Solution
 * SSH to the required host
@@ -9,12 +8,12 @@ sudo mkdir -p /var/www/webdata
 sudo chown -R root:root /var/www
 sudo chmod -R 755 /var/www
 ```
- * Now modify the`/etc/ssh/sshdconfig` as follows to force SFTP-only for all users belonging to the newly created group. This solution is more scalable as you can enforce SFTP-only to any number of users without having to edit the `sshd_config` each time.
+* Now modify the`/etc/ssh/sshdconfig` as follows to force SFTP-only for all users belonging to the newly created group. This solution is more scalable as you can enforce SFTP-only to any number of users without having to edit the `sshd_config` each time.
   * Make sure to comment the existing `Subsystem  sftp  /usr/libexec/openssh/sftp-server` line. 
   * Change the value of `ChrootDirectory` below as per question. In the below example, `/var/www/webdata` is configured:
- ```
- Subsystem sftp internal-sftp 
- Match Group sftpusers 
+  ```
+  Subsystem sftp internal-sftp 
+  Match Group sftpusers 
     ForceCommand internal-sftp 
     ChrootDirectory /var/www/webdata 
     PasswordAuthentication yes 
@@ -23,7 +22,7 @@ sudo chmod -R 755 /var/www
     X11Forwarding no 
     PermitTunnel no 
     AllowAgentForwarding no 
- ```
+  ```
 * Restart sshd `systemctl restart sshd`
 * Create the given user and add it to the group by running `sudo useradd javed -g sftpusers` (In this example `javed` is the user to be created)
 * Set the password to the user as given in the question by running: `sudo passwd javed`
