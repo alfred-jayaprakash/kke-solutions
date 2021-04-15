@@ -107,8 +107,8 @@ In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 kod
 * SSH back to each of the appservers and perform the following tasks 
 * Switch to root user: `sudo su`
 * Change to Apache Document root directory: `cd /var/www/html`
-* Download the latest Wordpress: `wget https://wordpress.org/wordpress-5.1.1.tar.gz` [Note: As of today, https://wordpress.org/latest.tar.gz is pointing to WordPress 5.2, which requires PHP version 5.6.20 or higher, that is not yet available to be updated with yum]
-* Extract the Wordpress installation: `tar xvf latest.tar.gz`
+* Download the latest Wordpress: `wget https://wordpress.org/wordpress-5.1.1.tar.gz` [Note: As of 15-Apr-2021, https://wordpress.org/latest.tar.gz is pointing to WordPress 5.2, which doesn't work with current version of PHP. In future, you can instead use `wget https://wordpress.org/latest.tar.gz`]
+* Extract the Wordpress installation: `tar xvf wordpress-5.1.1.tar.gz` (or `latest.tar.gz` if you downloaded that instead)
 * Change to WordPress directory and make a copy of `wp-config-sample.php` as `wp-config.php`
 ```UNIX
 cd wordpress
