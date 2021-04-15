@@ -2,8 +2,9 @@
 ## Solution
 ### Step 1 - Install and configure PHP FPM
 * Login to each of the appservers and perform the following tasks
-* Install PHP-FPM: `sudo yum install -y php-fpm`
-* Make changes in `/etc/php-fpm.d/www.conf`. Comment/uncomment lines and update values accordingly.
+* Switch to root user: `sudo su`
+* Install PHP-FPM: `yum install -y php php-mysql php-fpm`
+* Configure PHP-FPM to use unix socket instead of tcp socket: `vi /etc/php-fpm.d/www.conf` [Comment/uncomment lines and update values accordingly. Note that semicolon character (`;`) is used to comment a line]
 ```
 ;listen = 127.0.0.1:9000
 listen = /var/run/php-fpm/default.sock
@@ -22,40 +23,29 @@ group = apache
 # LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
 LoadModule mpm_event_module modules/mod_mpm_event.so
 ```
-* Enable PHP configurations in Apache: `vi /etc/httpd/conf.d/php.conf`
-```
-# Tell the PHP interpreter to handle files with a .php extension.
+* Edit `php.conf` to define an use PHP-FPM proxy handler: `vi /etc/httpd/conf.d/php.conf`. Note:
+  * Insert the `<Proxy>` directive at the top of the file
+  * Replace the existing handler in `FilesMatch` directive to use proxy
+  * Comment the lines that start with `php_value session` as below
+  ```conf
+  # PHP-FPM Proxy declaration
+  <Proxy "unix:/var/run/php-fpm/default.sock|fcgi://php-fpm">
+	  # Force registering proxy ahead of time - AJ
+      ProxySet disablereuse=off
+  </Proxy>
 
-# Proxy declaration
-<Proxy "unix:/var/run/php-fpm/default.sock|fcgi://php-fpm">
-	# we must declare a parameter in here (doesn't matter which) or it'll not register the proxy ahead of time
-    	ProxySet disablereuse=off
-</Proxy>
+  # Change default PHP handler to use PHP-FPM proxy instead
+  <FilesMatch \.php$>
+	  #SetHandler application/x-httpd-php
+	  SetHandler proxy:fcgi://php-fpm
+  </FilesMatch>
 
-# Redirect to the proxy
-<FilesMatch \.php$>
-	SetHandler proxy:fcgi://php-fpm
-</FilesMatch>
-
-#
-# Allow php to handle Multiviews
-#
-AddType text/html .php
-
-#
-# Add index.php to the list of files that will be served as directory
-# indexes.
-#
-DirectoryIndex index.php
-
-#
-# Uncomment the following lines to allow PHP to pretty-print .phps
-# files as PHP source code:
-#
-#<FilesMatch \.phps$>
-#	SetHandler application/x-httpd-php-source
-#</FilesMatch>
-```
+  #
+  # Make sure to comment the below lines
+  #
+  #php_value session.save_handler "files"
+  #php_value session.save_path    "/var/lib/php/session"
+  ```
 * Start php-fpm and restart Apache:
 ```
 systemctl start php-fpm
@@ -74,7 +64,7 @@ phpinfo();
 * SSH to Database host (stdb01)
 * Install and enable MariaDB server
 ```UNIX
-sudo yum install httpd mariadb mariadb-server -y
+sudo yum install mariadb mariadb-server -y
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 sudo systemctl status mariadb
@@ -102,30 +92,37 @@ MariaDB [(none)]>GRANT ALL PRIVILEGES on kodekloud_db5.* to 'kodekloud_roy'@'%' 
 MariaDB [(none)]>FLUSH PRIVILEGES;
 
 ```
-* Now load the database script as below
+* Now load the database script specified in the question as below
 ```SQL
-MariaDB [(none)]>source /tmp/db.sql
+MariaDB [(none)]>SOURCE /tmp/db.sql
 ```
 #### Verify MariaDB setup
 * Use `mysqlshow` to verify that the account you created works as expected, especially with host as stdb01. You should see all the WordPress tables listed i.e. wp...
 ```UNIX
 mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5
 ```
-In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 -p kodekloud_db5`
+In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5 -p`
 
 ### Step 3 - Download and install WordPress
 * SSH back to each of the appservers and perform the following tasks 
+* Switch to root user: `sudo su`
 * Change to Apache Document root directory: `cd /var/www/html`
-* Download the latest Wordpress: `wget https://wordpress.org/latest.tar.gz`
+* Download the latest Wordpress: `wget https://wordpress.org/wordpress-5.1.1.tar.gz` [Note: As of today, https://wordpress.org/latest.tar.gz is pointing to WordPress 5.2, which requires PHP version 5.6.20 or higher, that is not yet available to be updated with yum]
 * Extract the Wordpress installation: `tar xvf latest.tar.gz`
-* Change to WordPress directory and make a copy of `wp-config-sample.php` as `wp-config.php`: `cp wp-config-sample.php wp-config.php`
+* Change to WordPress directory and make a copy of `wp-config-sample.php` as `wp-config.php`
+```UNIX
+cd wordpress
+cp wp-config-sample.php wp-config.php
+```
 * Edit `wp_config.php` and set the DB details
 ```
 define('DB_NAME', 'kodekloud_db5');
-define('DB_HOST', 'stdb01');
 define('DB_USER', 'kodekloud_roy');
 define('DB_PASSWORD', 'kodekloud');
+define('DB_HOST', 'stdb01');
 ```
+* Change to parent directory and modify the ownership of the `wordpress` directory to apache: `chown -R apache:apache wordpress` 
+
 #### Verify WordPress setup
 * Use Curl command to check whether a valid HTML is returned: `http://localhost:5002/wordpress/`
 
