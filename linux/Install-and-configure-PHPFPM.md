@@ -51,6 +51,7 @@ LoadModule mpm_event_module modules/mod_mpm_event.so
 systemctl start php-fpm
 systemctl restart httpd
 ```
+
 #### Verify PHP-FPM setup
 * Create a sample PHP file`/var/www/html/index.php` to test your changes. The following should be the content:
 ```php
@@ -90,11 +91,11 @@ Once you have logged in, then run the below SQL commands to create database, cre
 MariaDB [(none)]>CREATE DATABASE kodekloud_db5;
 MariaDB [(none)]>GRANT ALL PRIVILEGES on kodekloud_db5.* to 'kodekloud_roy'@'%' identified by 'kodekloud';
 MariaDB [(none)]>FLUSH PRIVILEGES;
-
 ```
+Note: It's important to grant privileges to the user on all hosts as the user will connect from Wordpress as `kodekloud_roy@stdb01`.
 * Now load the database script specified in the question as below
 ```SQL
-MariaDB [(none)]>SOURCE /tmp/db.sql
+MariaDB [(none)]>SOURCE /tmp/db.sql;
 ```
 #### Verify MariaDB setup
 * Use `mysqlshow` to verify that the account you created works as expected, especially with host as stdb01. You should see all the WordPress tables listed i.e. wp...
@@ -129,3 +130,6 @@ define('DB_HOST', 'stdb01');
 ## Verification
 * Click tab `Select port to view on Host 1`, and after adding port 80 click on Display Port. This should connect to LB URL.
 * You should see a sample Blog WordPress site loaded
+
+---
+For tips on getting better at KodeKloud Engineer Linux Administration tasks, [click here](./README.md)
