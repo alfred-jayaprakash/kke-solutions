@@ -46,16 +46,16 @@ mysql -u kodekloud_roy -p kodekloud_db5 < /tmp/db.sql
 ```UNIX
 mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5
 ```
-In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 -p kodekloud_db5`
+In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5 -p`. Give password as `kodekloud` when prompted.
 
 ### Step 2 - WordPress configuration
 * SSH to storage server (ststor01)
 * Edit `wp_config.php` from the location specified in the question and set the DB details
 ```
 define('DB_NAME', 'kodekloud_db5');
-define('DB_HOST', 'stdb01');
 define('DB_USER', 'kodekloud_roy');
 define('DB_PASSWORD', 'kodekloud');
+define('DB_HOST', 'stdb01');
 ```
 #### Verify WordPress setup
 * Click tab `Select port to view on Host 1`, and after adding port 80 click on Display Port

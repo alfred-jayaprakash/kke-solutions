@@ -23,7 +23,7 @@ group = apache
 # LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
 LoadModule mpm_event_module modules/mod_mpm_event.so
 ```
-* Edit `php.conf` to define an use PHP-FPM proxy handler: `vi /etc/httpd/conf.d/php.conf`. Note:
+* Edit `php.conf` to define and use PHP-FPM proxy handler: `vi /etc/httpd/conf.d/php.conf`. Note:
   * Insert the `<Proxy>` directive at the top of the file
   * Replace the existing handler in `FilesMatch` directive to use proxy
   * Comment the lines that start with `php_value session` as below
@@ -101,7 +101,7 @@ MariaDB [(none)]>SOURCE /tmp/db.sql
 ```UNIX
 mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5
 ```
-In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5 -p`
+In case the above doesn't work, try as `mysqlshow -u kodekloud_roy -h stdb01 kodekloud_db5 -p`. Give password as `kodekloud` when prompted.
 
 ### Step 3 - Download and install WordPress
 * SSH back to each of the appservers and perform the following tasks 
