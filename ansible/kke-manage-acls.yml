@@ -7,15 +7,14 @@
 # For tips on getting better at Ansible tasks, check out the README.md
 # in this folder
 #
-- name: Create files and set ACLs
-  hosts: stapp01, stapp02, stapp03
+- name: Create file and set ACL in Host 1
+  hosts: stapp01
   become: yes
   tasks:
     - name: Create the blog.txt on stapp01
       file:
         path: /opt/data/blog.txt
         state: touch
-      when: inventory_hostname == "stapp01"
     - name: Set ACL for blog.txt
       acl:
         path: /opt/data/blog.txt
@@ -23,12 +22,14 @@
         etype: group
         permissions: r
         state: present
-      when: inventory_hostname == "stapp01"
+- name: Create file and set ACL in Host 2
+  hosts: stapp02
+  become: yes
+  tasks:
     - name: Create the story.txt on stapp02
       file:
         path: /opt/data/story.txt
         state: touch
-      when: inventory_hostname == "stapp02"
     - name: Set ACL for story.txt
       acl:
         path: /opt/data/story.txt
@@ -36,12 +37,14 @@
         etype: user
         permissions: rw
         state: present
-      when: inventory_hostname == "stapp02"
+- name: Create file and set ACL in Host 3
+  hosts: stapp03
+  become: yes
+  tasks:
     - name: Create the media.txt on stapp03
       file:
         path: /opt/data/media.txt
         state: touch
-      when: inventory_hostname == "stapp03"
     - name: Set ACL for media.txt
       acl:
         path: /opt/data/media.txt
@@ -49,4 +52,3 @@
         etype: group
         permissions: rw
         state: present
-      when: inventory_hostname == "stapp03"
