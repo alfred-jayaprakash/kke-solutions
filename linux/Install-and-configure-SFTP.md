@@ -2,13 +2,16 @@
 ## Solution
 * SSH to the required host
 * Create a new group: `sudo groupadd sftpusers`
-* Create the landing directory (`chroot` directory in the question). It's important that this directory and it's parent are owned by `root` and set permissions `0755`. In this example, `/var/www/webdata` is the landing directory mentioned in the question.
+* Create the landing directory (`chroot` directory in the question). It's important that this directory is :
+  * owned by user `root` and group `sftpusers`
+  * set permissions `0755`. 
+In this example, `/var/www/webdata` is the landing directory mentioned in the question.
 ```
 sudo mkdir -p /var/www/webdata
-sudo chown -R root:root /var/www
-sudo chmod -R 755 /var/www
+sudo chown root:sftpusers /var/www/webdata
+sudo chmod 755 /var/www/webdata
 ```
-* Now modify the`/etc/ssh/sshdconfig` as follows to force SFTP-only for all users belonging to the newly created group. This solution is more scalable as you can enforce SFTP-only to any number of users without having to edit the `sshd_config` each time.
+* Now modify the`/etc/ssh/sshd_config` as follows to force SFTP-only for all users belonging to the newly created group. This solution is more scalable as you can enforce SFTP-only to any number of users without having to edit the `sshd_config` each time.
   * Make sure to comment the existing `Subsystem  sftp  /usr/libexec/openssh/sftp-server` line. 
   * Change the value of `ChrootDirectory` below as per question. In the below example, `/var/www/webdata` is configured:
   ```
