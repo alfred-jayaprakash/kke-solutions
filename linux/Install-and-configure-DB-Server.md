@@ -1,7 +1,7 @@
 # Install and configure DB Server
 ## Solution
 ### Step 1 - Copy the db.sql to Database Server
-* Install `openssh-clients` to enable scp and copy databse script:
+* On Jump Host, install `openssh-clients` to enable scp. Using scp, copy database script to Database Server:
 ```UNIX
 sudo yum install openssh-clients -y
 scp /home/thor/db.sql peter@stdb01:/tmp
